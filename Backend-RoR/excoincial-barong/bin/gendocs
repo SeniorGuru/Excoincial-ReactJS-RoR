@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -e
+
+#RAILS_ENV=development
+#
+#if [ -f tmp/pids/server.pid ]; then
+#  kill $(cat tmp/pids/server.pid)
+#fi
+
+if [ -n "${V}" ]; then
+cat > config/initializers/versioning.rb << EOF
+# encoding: UTF-8
+# frozen_string_literal: true
+# This file is auto-generated from the current state of VCS.
+# Instead of editing this file, please use bin/gendocs.
+module Barong
+  class Application
+    GIT_TAG =    '${V}'
+    GIT_SHA =    '$(git rev-parse --short HEAD)'
+    BUILD_DATE = '$(date --rfc-3339=seconds)'
+    VERSION =    GIT_TAG
+  end
+end
+EOF
+fi
+
+#bundle install
+#bin/init_config
+#bundle exec rake db:drop db:create db:migrate db:seed
+#npm i -g swagger-markdown
+#npm i -g prettyjson-cli
+##bundle exec rails s -d
+##while [ ! -f tmp/pids/server.pid ]
+##bundle exec rake assets:clobber && \
+##bundle exec rake assets:precompile && \
+#pm2 restart $(echo $PWD | sed 's/^.*\/excoincial-\([^-/]*\)\(-ui\)*.*$/\1/g') --update-env
+##do
+##  sleep 1
+##done
+#sleep 10 # Wait additional time until Rails starts listen port.
+curl https://junbesitulo.excoincial.com/users/api/v1/swagger_doc > tmp/user_swagger.json
+#curl https://junbesitulo.excoincial.com/users/api/v2/management/management.json > tmp/management_swagger.json
+swagger-markdown -i tmp/user_swagger.json -o ./docs/user_api.md
+#swagger-markdown -i tmp/management_swagger.json -o ./docs/management.md
+cat tmp/user_swagger.json | prettyjson > docs/user_api.json
+#kill $(cat tmp/pids/server.pid)

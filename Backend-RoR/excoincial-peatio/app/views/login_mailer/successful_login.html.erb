@@ -1,0 +1,9 @@
+<h3><%= ENV.fetch('SENDER_NAME').upcase %> LOGIN</h3>
+<p>Dear <%= @member.email%>,</p>
+<p>This is to notify you of a successful login to your account. </p>
+<p>-----------------------------------</p>
+<p>Login Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %></p>
+<p>Location: <%= @city %></p>
+<p>IP Address: <%= @ip %></p>
+<p>User Agent: <%= @browser %></p>
+<p>-----------------------------------</p>

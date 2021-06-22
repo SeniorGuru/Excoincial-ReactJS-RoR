@@ -1,0 +1,29 @@
+<% content_for :frame do %>
+<div class="container" style="padding-top: 15px">
+	<div class="row">
+		<div class="col-md-3">
+			<ul class="list-group">
+				<% Currency.all.each do |currency| %>
+				  <li class="list-group-item <%= 'active' if currency.id == @currency.id %>"><a href="/symbol_detail/show/<%= currency.id%>"><%= currency.id.upcase %></a></li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="col-md-9" style="color: white">
+		  <div class="row">
+		  	<div class="col-md-12 text-center"><h3><%= "#{@currency.id.upcase} (#{@currency.name}) #{@currency.symbol}" %></h3></div>
+		  </div>
+			<!-- <%= @currency.inspect%> -->
+				
+		</div>
+	</div>
+</div>
+<% end %>
+
+<% content_for :header do %>
+  <div class="fixed-menu">
+    <div class="inner-header">
+      <%= render 'shared/funds_menu' %>
+    </div>
+  </div>
+
+<% end %>

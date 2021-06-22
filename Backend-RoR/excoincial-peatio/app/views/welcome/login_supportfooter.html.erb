@@ -1,0 +1,191 @@
+<div class="inner-header">
+  <%= render 'shared/menu' %>
+  <%= render 'shared/flash' %>
+</div>
+
+<article>
+  <div class="gray-bg inner-banner-bg">
+    <section class="faq light-grey-bg animatedParent" id="faq">
+      <div class="container animated fadeInUp go">
+        <h2 class="text-uppercase text-center light-blue fnt-bld mb-10 mt-0">SUPPORT CENTRE</h2>
+        <h4 class="text-uppercase text-center light-blue fnt-bld mb-10 mt-0">We're here to help you</h4>
+        <h4 class="text-uppercase text-center light-blue fnt-bld mb-10 mt-0">
+          EXCOINCIAL customer service is
+          online 24/7 to help resolve your needs.
+        </h4>
+        <br>
+        <h3 class="text-uppercase text-left light-blue fnt-bld mb-10 mt-0">FAQ</h3>
+        <p class="content t-white">We have made conscientious effort to provide you as
+          much information as concievably possible in this page and yet we make no
+          representation to commit that these pieces of information are not subject
+          to changes as may be warranted. Thus the best approach is contacting us on
+          <%= link_to ENV.fetch("SENDER_EMAIL"), "mailto:"+ENV.fetch("SENDER_EMAIL") %>
+          for current update(s) relevant to your specific need.
+        </p>
+      </div>
+      <div class="container animated fadeInUp go">
+        <div class="panel-group" id="accordion">
+          <% @faq_less.each_with_index do | faq, index |%>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>"
+                    class="panel-title expand">
+                  <div class="right-arrow pull-right"></div>
+                  <a href="javascript:void(0)" class="fnt-bld">
+                    <%= faq.question.html_safe %>
+                  </a>
+                </h5>
+              </div>
+              <div id="collapse<%= index %>" class="panel-collapse collapse <%= 'in' if index == 0 %>">
+                <div class="panel-body"><%= faq.answer.html_safe %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <h3><%= link_to "Read more...", root_url+"#faq" %></h3>
+      </div>
+    </section>
+  </div>
+  <section class="contact-bg light-grey-bg animatedParent" id="contact">
+    <div class="container animated fadeInUp go">
+      <h2 class="l-f t-white text-center">SUBMIT A REQUEST</h2>
+      <div class="col-sm-12  center-content  col-lg-7 col-md-10 mt30-xs contact-form-box">
+        <div class="row mb30">
+          <div class="col-xs-12  section-title text-center">
+            <div class="title-line center-line yellow-line">
+              <p class="content t-white">Have further questions? Open a support ticket to contact our support team.
+              </p>
+            </div>
+          </div>
+          <!-- /.column -->
+        </div>
+        <!-- /.row -->
+
+
+        <p style="display: none;" id="require_msg" class="alert alert-warning alert-block"></p>
+        <p style="display: none;" id="success_msg" class="alert alert-success alert-block"></p>
+
+        <hr class="empty">
+
+        <%= form_tag("/contactsave", method: "post", id: "contactForm", class: "site-form", name: "contactForm", 'data-toggle': "validator") do %>
+          <div class="row mb10">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="controls">
+                  <input class="form-control" data-error="This section is required." id="name"
+                         name="name" placeholder="Your Name *" type="text">
+                  <div class="help-block with-errors"></div>
+                </div>
+
+              </div>
+            </div>
+
+
+            <!-- /.column -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="controls">
+                  <input class="email form-control" data-error="This section is required." id="email"
+                         placeholder="Email *" type="email" name="email">
+                  <div class="help-block with-errors"></div>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.column -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="controls">
+                  <input class="form-control" id="phone" placeholder="Phone Number *" name="phone"
+                         type="text">
+                </div>
+
+              </div>
+            </div>
+            <!-- /.column -->
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <div class="controls">
+                  <input class="form-control" data-error="This section is required." name="subject"
+                         id="subject" placeholder="Subject *" type="text">
+                  <div class="help-block with-errors"></div>
+                </div>
+
+              </div>
+            </div>
+            <!-- /.column -->
+
+          </div>
+          <!-- /.row -->
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="controls">
+                                    <textarea class="form-control" data-error="This section is required." id="message"
+                                              name="message" placeholder="Message *" rows="5"></textarea>
+                  <div class="help-block with-errors"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt15">
+            <div class="col-sm-6">
+              <div id="msgSubmit" class="h4 hidden mt10 no-margin-bottom"></div>
+            </div>
+            <!-- /.column -->
+            <div class="col-sm-12 text-center">
+              <button type="button" id="submit_contact"
+                      class="black-btn btn site-btn grad-btn text-uppercase">Submit
+              </button>
+            </div>
+            <!-- /.column -->
+          </div>
+          <!-- /.row -->
+          <!-- /.form -->
+
+        <% end %>
+
+        <br>
+        <h3 class="l-f t-white text-center">Be part of our discussion and interactive
+          sessions on our official LinkedIn, Facebook, Twitter, Telegram groups.
+        </h3><br>
+        <ul class="social-list trade-foot">
+          <li><a href="https://www.facebook.com/excoincial" target="_blank"><i class="fa fa-facebook fa-size"
+                                                                               aria-hidden="true"></i></a>
+          </li>
+          <li><a href="http://www.reddit.com/r/excoincial" target="_blank"><i class="fa fa-reddit-alien"
+                                                                                   aria-hidden="true"></i></a>
+          </li>
+          <li><a href="https://www.linkedin.com/company/excoincial/" target="_blank"><i class="fa fa-linkedin"
+                                                                                        aria-hidden="true"></i></a>
+          </li>
+
+          <li><a href="https://twitter.com/excoincial" target="_blank"><i class="fa fa-twitter fa-size"
+                                                                          aria-hidden="true"></i></a></li>
+          <li><a href="https://medium.com/@excoincial" target="_blank"><i class="fa fa-medium fa-size"
+                                                                          aria-hidden="true"></i></a></li>
+          <li><a href="http://t.me/excoincial" target="_blank"><i class="fa fa-telegram fa-size"
+                                                                  aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="gray-bg inner-banner-bg">
+    <section class="faq light-grey-bg animatedParent" id="api">
+      <div class="container animated fadeInUp go">
+        <h2 class="text-uppercase text-center light-blue fnt-bld mb-10 mt-0">API DOCUMENTATION</h2>
+        <p class="content t-white">Here you can access our stable and secure API.
+          You can get the latest market data and trade via the APIs.
+        </p>
+        <h4 class="text-uppercase text-left light-blue fnt-bld mb-10 mt-0">
+          <%= link_to "Read More", #<br>"+root_url+"swagger?url=/api/v2/swagger",
+            root_url+"swagger?url=/api/v2/swagger" %>
+        </h4>
+      </div>
+
+</article>

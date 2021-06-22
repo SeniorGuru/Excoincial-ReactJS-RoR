@@ -1,0 +1,128 @@
+<%- if account_signed_in? %>
+  <nav class="navbar navbar-default headbg">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand navbar-link lg" href="">
+        </a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav navbar-right headetext user-panel-menu">
+
+          <li role="presentation"><a href="/exchange">Exchange</a>
+          </li>
+
+
+          <li role="presentation"><a href="/funds">Wallet</a>
+          </li>
+
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> My Orders <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/buy/pendingtrade"> Pending Buy Trade</a></li>
+              <li><a href="/sell/pendingtrade"> Pending Sell Trade</a></li>
+            </ul>
+          </li>
+
+
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">History <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/buy/tradehistory">Trade History</a></li>
+              <li><a href="/deposit_history/BTC"> Deposit
+                History</a></li>
+              <li><a href="/withdraw_history/BTC"> Withdraw
+                History</a></li>
+
+            </ul>
+          </li>
+
+
+          <li class="user-menu dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <span>local dev</span>  <span class="photo-pic pull-right"><img src="/images/profile.jpg" width="128" height="129"></span>  </a>
+            <ul class="dropdown-menu">
+              <li role="presentation"><a href="/settings"><i class="fa fa-user" aria-hidden="true"></i>My Profile
+              </a></li>
+              <li role="presentation"><a href="/userkycdetails"> <i class="fa fa-id-card" aria-hidden="true"></i> Kyc Document </a></li>
+              <li role="presentation"><a href="/myaccount/tickets/list"><i class="fa fa-life-ring" aria-hidden="true"></i>Support</a></li>
+              <li><a href="/logout" onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"> <i class="fa fa-sign-out" aria-hidden="true"></i> Logout </a>
+                <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                  <input type="hidden" name="_token" value="BxNwDRrlObunWwgJAoggxTEUkPGSE6eF9FBE4tCD">
+                </form>
+              </li>
+            </ul>
+          </li>
+          <li class="night-mode" role="presentation"><a href="/setmode/daymode"><i class="fa fa-sun-o modeicon" aria-hidden="true"></i></a></li>
+
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell t-white" aria-hidden="true"></i>(<b>0</b>)</a>
+            <ul class="dropdown-menu notify-drop">
+              <div class="notify-drop-title">
+                <div class="row">
+                  <div class="col-md-6 col-sm-6 col-xs-6">Notification (<b>0</b>)</div>
+                  <div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title=""><i class="fa fa-dot-circle-o"></i></a></div>
+                </div>
+              </div>
+              <!-- end notify title -->
+              <!-- notify content -->
+              <div class="drop-content">
+                <li>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    No Message Found
+                  </div>
+                </li>
+
+
+              </div>
+              <div class="notify-drop-footer text-center">
+
+              </div>
+            </ul>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% else %>
+  <nav class="navbar navbar-default navbar-inverse headbg head-fixed">
+    <div class="container">
+      <div class="navbar-header"><a class="navbar-brand navbar-link lg" href="/"></a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span
+          class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+          class="icon-bar"></span><span class="icon-bar"></span></button>
+      </div>
+      <div class="collapse navbar-collapse" id="navcol-1">
+
+        <ul class="nav navbar-nav navbar-left headetext helvetica-font-roman ">
+
+          <li role="presentation"><a href="/#feature">Features</a></li>
+          <li role="presentation"><a href="/#howit">how it works</a></li>
+          <li role="presentation"><a href="/#faq">Faq</a></li>
+          <li role="presentation"><a href="/#partners">Partners</a></li>
+          <li role="presentation"><a href="/#contact">Contact</a></li>
+          <li role="presentation"><a href="/aboutus">About us</a></li>
+          <li role="presentation"><a href="/exchange">Exchange</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right headetext user-panel-menu">
+          <li role="presentation"><a href="/login" class=" mr-10">Sign In </a></li>
+          <li role="presentation"><a href="/register" class="btn border-btn">Sign Up </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+<% end -%>

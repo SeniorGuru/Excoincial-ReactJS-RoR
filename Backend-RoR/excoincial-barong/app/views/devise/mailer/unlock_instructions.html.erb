@@ -1,0 +1,40 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> UNLOCK ACCOUNT
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear User,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Your account is deactivated either on your request or due to an
+    excessive number of unsuccessful sign in attempts.</p>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+<% if @unlock_from_now.present? %>
+    Unlock will be available at <%= @unlock_at %> which is in <%= @unlock_from_now %> from now.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+  <p>After lock period click the link below to unlock your account:</p>
+<% else %>
+  <p>Unlock is already available. Please click the link below to unlock your account:</p>
+<% end %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+  <%= link_to 'Unlock my account',
+              account_unlock_url(ViewHelper.with_frontend_domain(unlock_token: @token)) %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

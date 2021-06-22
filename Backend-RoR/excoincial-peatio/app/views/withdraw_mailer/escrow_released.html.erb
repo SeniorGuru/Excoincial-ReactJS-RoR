@@ -1,0 +1,26 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> <%=
+    @receiver.id == @member.id ? "CHARGEBACK" : "OUTGOING #{ @reason&.upcase }" %> ESCROW RELEASE
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear <%= @withdraw.member.email %>,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    your <%= ENV.fetch('SENDER_NAME').upcase %> escrow account applied for release
+    <%= @withdraw.amount.to_f.round(3) %>
+    <%= @withdraw.currency_id.upcase %><br />
+    to account: <%=@receiver.email.split("@")[0].first%>*****<%=
+    @receiver.email.split("@")[0].last %>@<%= 
+    @receiver.email.split("@")[1] %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    <%= @withdraw.escrow_release_reason %><br />
+    <%= @withdraw.escrow_agreement %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

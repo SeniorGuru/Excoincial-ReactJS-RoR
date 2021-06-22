@@ -1,0 +1,131 @@
+#strategy:
+#  type: copy
+#  volume_ratio: 0.01
+#  target:
+#    driver: rubykube
+#    market: 'ETHBTC'
+#    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+#    key: ""
+#    secret: ""
+#    rate_limit: 1
+#  sources:
+#    - driver: bitfaker
+#      market: 'tETHUSD'
+#      host: "api.bitfinex.com"
+#      key: ""
+#      secret: ""
+#      rate_limit: 0.2
+#    - driver: bitfinex
+#      market: 'tETHUSD'
+#      host: "api.bitfinex.com"
+#      key: ""
+#      secret: ""
+#      rate_limit: 0.2
+#    - driver: binance
+#      market: 'ETHBTC'
+#      host: "api.binance.com"
+#      key: ""
+#      secret: ""
+#      rate_limit: 1
+ethbtc:
+  type: copy
+  volume_ratio: 0.2
+  target:
+    driver: rubykube
+    market: 'ETHBTC'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.04
+  sources:
+    - driver: binance
+      market: 'ETHBTC'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.04
+btcusd:
+  type: copy
+  volume_ratio: 0.4
+  target:
+    driver: rubykube
+    market: 'BTCUSD'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.06
+  sources:
+    - driver: binance
+      market: 'BTCTUSD'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.06
+ethusd:
+  type: copy
+  volume_ratio: 0.04
+  target:
+    driver: rubykube
+    market: 'ETHUSD'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.06
+  sources:
+    - driver: binance
+      market: 'ETHTUSD'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.06
+xrptusd:
+  type: copy
+  volume_ratio: 0.000001
+  target:
+    driver: rubykube
+    market: 'XRPTUSD'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.04
+  sources:
+    - driver: binance
+      market: 'XRPTUSD'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.04
+hoteth:
+  type: copy
+  volume_ratio: 0.00000001
+  target:
+    driver: rubykube
+    market: 'HOTETH'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.1
+  sources:
+    - driver: binance
+      market: 'HOTETH'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.1
+hotusd:
+  type: copy
+  volume_ratio: 0.0000000001
+  target:
+    driver: rubykube
+    market: 'HOTUSD'
+    host: ENV.fetch("URL_SCHEME")+"://"+ENV.fetch("EXCHANGE_STIE_DOMAIN",ENV.fetch(AUTH_URL_HOST,"excoincial.com"))
+    key: ""
+    secret: ""
+    rate_limit: 0.1
+  sources:
+    - driver: binance
+      market: 'HOTUSDT'
+      host: "api.binance.com"
+      key: ""
+      secret: ""
+      rate_limit: 0.1

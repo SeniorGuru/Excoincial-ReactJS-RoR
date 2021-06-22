@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="/favicon.ico" rel="shortcut icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= render 'shared/meta' %>
+    <%= render 'shared/sentry' %>
+    <%= csrf_meta_tags %>
+
+    <%= custom_stylesheet_link_tag_for :main %>
+
+    <%= include_gon %>
+    <%= javascript_include_tag "locales/#{I18n.locale}" %>
+    <%= javascript_include_tag 'landing' %>
+  </head>
+
+  <body id="<%= body_id %>" data-spy="scroll" data-lang="<%= locale_name %>">
+    <%= yield %>
+    <script src="/js/jquery.min.js"></script>
+    <%= render 'shared/footer' %>
+    <script src="/js/particles.min.js"></script>
+    <script type="text/javascript" src="/js/particlesRun.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("button").removeClass("active");
+                // $(".tab").addClass("active"); // instead of this do the below
+                $(this).addClass("active");
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.collapse.in').prev('.panel-heading').addClass('active');
+            $('#accordion, #bs-collapse')
+                .on('show.bs.collapse', function (a) {
+                    $(a.target).prev('.panel-heading').addClass('active');
+                })
+                .on('hide.bs.collapse', function (a) {
+                    $(a.target).prev('.panel-heading').removeClass('active');
+                });
+        });
+    </script>
+  </body>
+</html>

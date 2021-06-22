@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body style="width:100%;padding:0px;margin:0px;font-family:arial;">
+  <table align='center' width='100%' border='0' cellspacing='0' cellpadding='10' style='margin:55px auto; width:100%; background-color:#fff; font-family:Arial, Helvetica, sans-serif; color:#333; border:1px solid #ccc;max-width:530px;'>
+    <tr>
+      <td colspan='3' style='padding:0px;background: #162c43;height: 140px;min-width: 528px;max-width: 528px;width: 100%;font-size: xx-large;font-family: sans-serif;color: white;line-height: 24px;text-align: center;'>
+        <img src="<%= ENV.fetch('URL_SCHEME','https') %>://<%= ENV.fetch('AUTH_URL_HOST') %>/images/email-banner.jpg" alt=<%=
+          "\"\n" + ENV.fetch('SENDER_NAME').upcase + "\n\"" %> style='width:100%;max-width: 528px;'>
+      </td>
+    </tr>
+    <tr>
+      <td colspan='3' align='center' height='20' style='padding:0px;'></td>
+    </tr>
+    <tr>
+      <td colspan="3" style='text-align:center;font-size:20px;color:#515151;font-weight:600;'>
+        <%= yield %>
+      </td>
+    </tr>
+    <% if @password_change == true %>
+      <tr>
+        <td colspan="3" style='text-align:left;font-size:15px;color:#000;padding-top:0px;'><br />We will never ask you for your password in an email.
+          If you don not trust a link in an email,
+          go directly to the normal sign in page via <%= ENV.fetch('URL_SCHEME','https') %>://<%= ENV.fetch('AUTH_URL_HOST') %>
+        </td>
+      </tr>
+    <% end %>
+    <tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+      <td style='text-align:left;font-size:15px;line-height:23px;color:#000;padding-bottom:0px;'>
+        Thank you!<br/>
+        <%= ENV.fetch('SENDER_NAME').upcase %> Team <br />
+      </td>
+      <td align='left' style='padding-bottom:0px;'>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan='3' align='center' height='3' style='padding:0px;'></td>
+    </tr>
+    <tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+      <td style='text-align:left;font-size:15px;color:#000;padding-bottom:0px;'>
+        Automated message, please do not reply.
+      </td>
+      <td align='left' style='padding-bottom:0px;'>&nbsp;</td>
+    </tr>
+    <% if @account.present? %>
+    <tr>
+      <td colspan='3' align='center' height='3' style='padding:0px;'></td>
+    </tr>
+    <tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+      <td style='text-align:left;font-size:15px;color:#000;padding-bottom:0px;'>
+        If this activity is not your own operation, or looks suspicious, please
+          <%= link_to "disable your account here",welcome_disable_account_url(@member.uid) %>
+          and contact us immediately on <%= ENV.fetch('ADMIN_EMAIL') %>      </td>
+      <td align='left' style='padding-bottom:0px;'>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan='3' align='center' height='3' style='padding:0px;'></td>
+    </tr>
+    <tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+      <td style='text-align:left;font-size:15px;color:#000;padding-bottom:0px;'>
+          If your account is disabled in this way, it will remain disabled for
+          <%= @lock_period %> at least after you contact support.
+      </td>
+      <td align='left' style='padding-top:0px;'>&nbsp;</td>
+    </tr>
+    <% end %>
+    <tr>
+      <td colspan='3' align='center' height='15' style='padding:0px;'></td>
+    </tr>
+    <tr>
+      <td colspan='3' height='50' style='text-align:center; background-color:#162c43;padding:0px;'>
+      </td>
+    </tr>
+  </table>
+  </body>
+</html>

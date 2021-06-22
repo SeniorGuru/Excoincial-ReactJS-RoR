@@ -1,0 +1,83 @@
+
+
+<h3 class="text-center t-pink nova-font-bold pb-20 text-uppercase">SIGN IN</h3>
+
+<%=javascript_tag do %>
+  var onRecaptchaElementLoad = function() {
+    grecaptcha.render('grecaptcha', {
+      'sitekey' : '<%= j ENV["RECAPTCHA_SITE_KEY"]%>',
+      'size' : 'compact',
+      'theme': 'white'
+    });
+  };
+<%end%>
+
+<%= form_for(resource, as: resource_name, url: account_login_path, class: "mui-form") do |f| %>
+  <%#= devise_error_messages! %>
+
+  <div class="mui-textfield">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email',
+                      class: 'mui--is-dirty mui--is-not-empty',
+                      placeholder: 'Enter email', required: true %>
+  </div>
+
+  <div class="mui-textfield">
+    <%= f.label :password %>
+    <%= f.password_field :password, autofocus: true, autocomplete: 'off',
+                         class: 'mui--is-dirty mui--is-not-empty',
+                         placeholder: 'Enter password' %>
+  </div>
+
+  <div align="center">
+    <div id="grecaptcha"></div>
+  </div>
+
+  <script src='https://www.google.com/recaptcha/api.js?onload=onRecaptchaElementLoad&render=explicit' async defer></script>
+
+  <div align="center">
+    <div class="btntext">
+      <%= f.submit 'Submit', class: 'btn btn-gray site-btn mt-20 text-uppercase nova-font-bold' %>
+    </div>
+    <div class="mui-textfield btntexts">
+      <h5 class="mb-0"><a href="<%= new_account_password_path %>">Forgot password?</a></h5>
+      <h5 class="mt-0">Dont have an account? <a href="<%= new_account_registration_path %>">SIGN UP</a></h5>
+    </div>
+  </div>
+<% end %>
+
+<%= link_to "Didn't receive confirmation instructions?", new_account_confirmation_path %>
+<%= link_to "Didn't receive unlock instructions?", new_account_unlock_path %>
+
+<!--<div class="mt-5 mb-5 mx-4 main-card">-->
+
+<!--  <div class="card">-->
+
+
+
+<!--    <div classs="pt-2">-->
+<!--      <div class="row justify-content-center">-->
+<!--        <div class="container-fluid box-shadow mx-3">-->
+<!--          <div class="mb-3">-->
+<!--            <h2 class="title font-weight-bold">Sign in</h2>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="container-fluid mx-3 px-5 py-4">-->
+
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+    <%# if account_signed_in? %>
+      <%#= render 'layouts/shared/account_footer' %>
+    <%# else %>
+      <%#= render 'devise/shared/footer' %>
+    <%# end %>
+
+<!--  </div>-->
+</div>
+
+
+

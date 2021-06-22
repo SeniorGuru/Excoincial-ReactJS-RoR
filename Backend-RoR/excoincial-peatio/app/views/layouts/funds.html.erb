@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="funds">
+  <head>
+    <%= render 'shared/meta' %>
+    <%= render 'shared/sentry' %>
+    <%= csrf_meta_tags %>
+
+    <link href="/favicon.ico" rel="shortcut icon" />
+    <%# stylesheet = content_for?(:stylesheet) ? yield(:stylesheet) : 'application' %>
+    <%#= stylesheet_link_tag stylesheet, media: 'all' %>
+    <%= custom_stylesheet_link_tag_for :main %>
+
+    <%= include_gon %>
+    <%= javascript_include_tag "locales/#{I18n.locale}" %>
+    <%= javascript_include_tag 'funds' %>
+
+  </head>
+
+  <body id="<%= body_id %>" data-lang="<%= "#{locale_name}" %>" class="<%= session[:daymode] %>">
+
+  <div class="fixed-menu">
+    <div class="inner-header">
+      <%= render 'shared/funds_menu' %>
+    </div>
+  </div>
+
+
+  <%#- if content_for?(:header) %>
+      <%#= yield(:header) %>
+    <%#- else %>
+      <%#= render 'shared/header' %>
+    <%#- end %>
+
+    <div class="loader"></div>
+    <div class="pagecontent">
+      <%= yield %>
+    </div>
+
+  <%- if content_for?(:footer) %>
+    <%= yield(:footer) %>
+  <%- else %>
+    <%= render 'shared/footer' %>
+  <%- end %>
+
+  <%= yield(:scripts) if content_for?(:scripts) %>
+
+  </body>
+</html>
+

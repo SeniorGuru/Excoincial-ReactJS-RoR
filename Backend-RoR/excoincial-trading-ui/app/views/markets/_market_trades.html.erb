@@ -1,0 +1,27 @@
+<div id="market_trades_wrapper" class="has-right-dropdown">
+  <div id="market_trades">
+    <div class="panel panel-default">
+      <div class="panel-body panel-body-head">
+      </div>
+      <div class="panel-body panel-body-content">
+        <table class="table table-hover all-trades" id="all-trades-table">
+          <thead>
+            <tr class="row">
+              <th class="at col-xs-3 text-left">Date/Time</th>
+              <th class="my col-xs-1 text-left"></th>
+              <th class="my col-xs-2 text-left">TYPE</th>
+              <th class="price col-xs-2 text-center"><%= "#{t('.price')} (#{@current_market.fetch(:bid_unit).upcase})" %></th>
+               <th class="price col-xs-2 text-center">Amount<%= "(#{@current_market.fetch(:ask_unit).upcase})"%></th>
+              <th class="volume col-xs-2 text-right">TOTAL <%= "(#{@current_market.fetch(:bid_unit).upcase})"%></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <table class="table table-hover my-trades" id="my-trades-table">
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="trade-paginer"></div> -->
+</div>

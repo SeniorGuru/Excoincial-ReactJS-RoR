@@ -1,0 +1,68 @@
+<div class="fixed-menu">
+  <div class="inner-header">
+    <%= render partial: 'trade_menu' %>
+  </div>
+  <header class="coins-trade-info">
+    <div class="coins-pair-name t-white m-b-f h5 mo-x"><span class="coin-icon-m">
+      <img src="/images/white-icon/btc.png" />
+    </span><%= @current_market.fetch(:name) %></div>
+
+    <div class="desktop-dropdown">
+      <div class="coin-dropdown">
+        <li class="dropdown" style="list-style: none;">
+          <a href="#" class="dropdown-toggle t-white text-uppercase" data-toggle="dropdown" aria-expanded="false"><span class="de-x mo-d coins-pair-name t-white m-b-f h5"><i class="cc BTC color-primary"></i><%= @current_market.fetch(:name) %></span> <span class="mo-x">Select Market</span><b class="caret"></b></a>
+          <ul class="dropdown-menu" style="display: none;" data-simplebar="init"><div class="simplebar-track vertical" style="visibility: hidden;"><div class="simplebar-scrollbar"></div></div><div class="simplebar-track horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar"></div></div><div class="simplebar-scroll-content" style="padding-right: 17px; margin-bottom: -34px;"><div class="simplebar-content" style="padding-bottom: 17px; margin-right: -17px;">
+
+
+            <!--- These menu items will only appear in the "More" dropdown menu. --->
+
+            <li><a href="/trading/afcashbtc">
+              <div class="coin-pairs-link">
+                <i><img src="/images/color-icon/btc.png"></i>
+                <span class="coin-pair-name">AFCASH/BTC<br><small class="t-grey small">Bitcoin</small></span>
+                <span><%= @tickers[:afcashbtc][:ticker][:vol] %><br><small class="t-grey small">24h Volume</small></span>
+                <span><%= @tickers[:afcashbtc][:ticker][:last] %><br><small class="red-t small"><%= @tickers[:afcashbtc][:ticker][:price_change_percent] %></small></span>
+              </div>
+            </a></li>
+
+            <li><a href="/trading/afcasheth">
+              <div class="coin-pairs-link">
+                <i><img src="/images/color-icon/eth.png"></i>
+                <span class="coin-pair-name">AFCASH/ETH<br><small class="t-grey small">Ethereum</small></span>
+                <span><%= @tickers[:afcasheth][:ticker][:vol] %><br><small class="t-grey small">24h Volume</small></span>
+                <span><%= @tickers[:afcasheth][:ticker][:last] %><br><small class="red-t small"><%= @tickers[:afcasheth][:ticker][:price_change_percent] %></small></span>
+              </div>
+            </a></li>
+<!--            <li><a href="/trading/xrpafcash">-->
+<!--              <div class="coin-pairs-link">-->
+<!--                <i><img src="/images/color-icon/afcash.png"></i>-->
+<!--                <span class="coin-pair-name">XRP/AFCASH<br><small class="t-grey small">AFCASH</small></span>-->
+<!--                <span><%#= @tickers[:xrpafcash][:ticker][:vol] %><br><small class="t-grey small">24h Volume</small></span>-->
+<!--                <span><%#= @tickers[:xrpafcash][:ticker][:last] %><br><small class="red-t small"><%#= @tickers[:xrpafcash][:ticker][:price_change_percent] %></small></span>-->
+<!--              </div>-->
+<!--            </a></li>-->
+
+          </div></div></ul>
+        </li>
+      </div>
+    </div>
+
+    <div class="site-trade-value">
+      <span class="t-white h5 m-b-f last"></span>
+      <span class="m-b-f">Last Price Trade</span>
+    </div>
+
+    <div class="site-trade-value">
+      <span class="green-t h5 m-b-f change"></span>
+      <span class="m-b-f">24h <%= t('.change') %></span>
+    </div>
+
+    <div class="site-trade-value">
+      <span class="green-t h5 m-b-f vol"></span>
+      <span class="m-b-f"><%= t('.vol') %></span>
+    </div>
+
+  </header>
+</div>
+
+

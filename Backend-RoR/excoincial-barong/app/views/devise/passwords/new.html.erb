@@ -1,0 +1,22 @@
+<div class="row justify-content-center">
+  <div class="container-fluid box-shadow mx-3">
+    <div class="mb-3">
+      <h2 class="title font-weight-bold">Password Recovery</h2>
+    </div>
+  </div>
+
+  <div class="container-fluid px-5 py-4">
+    <%= form_for(resource, as: resource_name, url: account_password_path, html: { method: :post }) do |f| %>
+      <%#= devise_error_messages! %>
+
+      <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control form-control-lg underlined', placeholder: 'Enter your email' %>
+      </div>
+
+      <div class="mt-4">
+        <%= f.submit 'reset password', class: 'btn btn-block btn-success col-6' %>
+      </div>
+    <% end %>
+  </div>
+</div>

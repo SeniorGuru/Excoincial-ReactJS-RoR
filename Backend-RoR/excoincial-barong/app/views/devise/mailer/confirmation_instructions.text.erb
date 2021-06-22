@@ -1,0 +1,23 @@
+Welcome to <%= ENV.fetch('SENDER_NAME').upcase %>
+
+Dear User,
+
+Please confirm your registration done from the following IP <%=
+@resource.current_sign_in_ip %> - <%= @resource.updated_at %>(UTC).
+
+<%= link_to "CLICK TO VERIFY YOUR ACCOUNT", 
+    account_confirmation_url(ViewHelper.with_frontend_domain(confirmation_token: @token)) %>
+
+If you are unable to confirm by clicking the button above, please copy the
+address below to the browser address bar to confirm:
+<%= account_confirmation_url(ViewHelper.with_frontend_domain(confirmation_token: @token))%>
+
+-------------------------------------
+5 Security Tips:
+* DO NOT give your password to anyone!
+* DO NOT call any phone number for someone claiming to be <%= ENV.fetch('SENDER_NAME').upcase %> Support!
+* DO NOT send any money to anyone claiming to be a member of <%= ENV.fetch('SENDER_NAME').upcase %>!
+* Enable Google Two Factor Authentication!!
+* DO NOT forget to Make sure you are really visiting <%= 
+    "#{ENV.fetch('SENDER_NAME').upcase} at #{ENV.fetch('URL_SCHEME')
+    }://#{ENV.fetch('AUTH_URL_HOST')}" %>

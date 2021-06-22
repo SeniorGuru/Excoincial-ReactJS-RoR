@@ -1,0 +1,154 @@
+<!-- <h1 class="page-title"><%= t('header.funds') %></h1>
+
+<div class="card card-default">
+  <div class="card-currencies">
+
+    <div class="row">
+      <div class="col-12 pr-0">
+
+        <div class="currencies-container">
+          <accounts></accounts>
+        </div>
+      </div>
+
+      <div class="col-8 border-left">
+        <div class="card-body">
+           {{template 'flash'}}
+          <ui-view></ui-view>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div> -->
+
+<%# content_for :scripts do %>
+<!--  <script type="text/javascript" charset="utf-8">-->
+<!--      $(window).load(function(){-->
+<!--          $.ajax({-->
+<!--              type: "post",-->
+<!--              url: "<%#= gen_address_funds_path %>"-->
+<!--          })-->
+<!--      });-->
+<!--  </script>-->
+<%# end %>
+
+<div class="pagecontent">
+  <div class="container-fluid site-container">
+    <div class="bannerpage mt-10">
+      <section class="">
+        <div class="site-theme-form">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="pull-right">
+
+                <div class="mui-checkbox">
+                  <label style="color: #fff;"><input type="checkbox" value="" class="hidezero">Hide
+                    Zero Balances</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 site-size">
+              <div class="banner-border">
+                <h3 class="page-header text-uppercase no-icon"><span class="bottom-line">WALLET</span></h3>
+
+                <div class="panel panel-content panel-default panel-border">
+                  <div class="panel-body pt-0">
+                    <div class="table-responsive table wllttb">
+                      <table width="100%" class="table tbg keywords" id="funds-table">
+                        <thead>
+                        <tr>
+                          <th class="header">COIN/CURRENCY NAME</th>
+                          <th class="header">AVAILABLE</th>
+                          <th class="header">TRADE</th>
+                          <th class="header">TOTAL</th>
+                          <th class="header">Icon</th>
+                          <th class="header">Info</th>
+                          <th class="header">ACTIONS</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                       <!--  <%# @accounts.each do |account| %>
+                          <tr class="">
+                            <td><%#= account.currency.id.upcase %></td>
+                            <td><%#= account.balance %></td>
+                            <td><%#= account.locked %></td>
+                            <td><%#= account.balance + account.locked %></td>
+                            <td><%#= image_tag account.currency.icon_url, class: "funds-currency-icon" %></td>
+                            <td><%#= account.currency.name %></td>
+                            <td>
+                              <%#= link_to raw("Deposit"), deposit_index_path(account.currency.id), class: 'btn btn-primary btn-xs m-t-9' %>
+                              <%#= link_to raw("Withdraw"), withdraw_index_path(account.currency.id), class: 'btn btn-default btn-xs m-t-9' %>
+                            </td>
+                          </tr>
+                        <%# end %> -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<% content_for :header do %>
+  <div class="fixed-menu">
+    <div class="inner-header">
+      <%= render 'shared/funds_menu' %>
+    </div>
+  </div>
+
+<% end %>
+
+<% content_for :setmode do %>
+  <% if session[:daymode] == 'daymode' %>
+    <li class="day-mode" role="presentation"><a href="/setmode/nightmode"><i class="fa fa-moon-o modeicon" aria-hidden="true"></i></a></li>
+  <% else %>
+    <li class="night-mode" role="presentation"><a href="/setmode/daymode"><i class="fa fa-sun-o modeicon" aria-hidden="true"></i></a></li>
+  <% end %>
+<% end %>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(window).load(function(){
+      $.ajax({
+        type: "post",
+        url: "<%= gen_address_funds_path %>"
+      })
+    });
+    var datatable = null;
+    $(document).ready(function() {
+      datatable = $('#funds-table').DataTable( {
+        "serverSide": true,
+        destroy: true,
+        "ajax": {
+          "url": '/funds/funds_json',
+          "dataSrc": 'accounts_json',
+        }
+      });
+
+      $(".hidezero").click(function(){
+        $.ajax({
+          type: "get",
+          url: "/funds/funds_json",
+          data: {"hide": $(".hidezero")[0].checked},
+          success: function(data) {
+            $('#funds-table').empty();
+            var datatable = $('#funds-table').DataTable( {
+              "data": data["accounts_json"],
+              destroy: true 
+            });
+          }
+        })
+      });
+
+    });
+  </script>
+<% end %>

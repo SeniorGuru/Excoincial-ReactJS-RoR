@@ -1,0 +1,45 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> ADMIN EVENT INFO REPORT
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear  admin,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Reporting notifying about an event referred to an <%= ENV.fetch('SENDER_NAME').upcase %>
+    <br/>
+    <%= (@account.present? ? (@account.profile.first_name rescue @account.email) : 'unknown')
+     %> account.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;word-break: break-all;'>
+    If you are NEITHER an admin of <%= ENV.fetch('SENDER_NAME').upcase %>
+    NOR are you employed by the company itself or subsidiary/sibling companies
+    then you received this mail by mistake. Please report this incident to our
+    admin or support email immediately and don't share the contents of this mail
+    with anybody except us. This mail may contain proprietary information.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    The original report message reads as follows:
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;word-break: break-all;'>
+    <%= (h @data.to_s).gsub(/\n/, '<br/>').html_safe %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    End of report
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

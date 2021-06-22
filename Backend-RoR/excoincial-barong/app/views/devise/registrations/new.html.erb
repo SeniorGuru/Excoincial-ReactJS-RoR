@@ -1,0 +1,73 @@
+
+<h3 class="text-center t-pink nova-font-bold pb-20 text-uppercase">Create Your Account</h3>
+
+<%=javascript_tag do %>
+  var onRecaptchaElementLoad = function() {
+    grecaptcha.render('grecaptcha', {
+      'sitekey' : '<%= j ENV["RECAPTCHA_SITE_KEY"]%>',
+      'size' : 'compact',
+      'theme': 'white'
+    });
+  };
+<%end%>
+
+<%= form_for(resource, as: resource_name, url: account_registration_path, class: "mui-form") do |f| %>
+
+  <div class="mui-textfield">
+    <%= f.label :email, 'Email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'mui--is-empty mui--is-dirty', placeholder: 'Email' %>
+  </div>
+
+  <div class="mui-textfield">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, autocomplete: 'off', class: 'mui--is-empty mui--is-dirty', placeholder: @minimum_password_length ? "Password (#{@minimum_password_length} characters minimum)" : "Password" %>
+    <span style="font-size: 10px; font-weight: bold;"> Note : Password require min 6 character and max 16, Format : use only A-Z,a-z,0-9 and any special character, For eg:Abcd@123 </span>
+    <br>
+  </div>
+
+  <div class="mui-textfield">
+    <%= f.label :password_confirmation, 'Confirm password' %>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', class: 'mui--is-empty mui--is-dirty', placeholder: 'Password confirmation' %>
+  </div>
+
+  <div align="center">
+    <div id="grecaptcha"></div>
+  </div>
+
+  <script src='https://www.google.com/recaptcha/api.js?onload=onRecaptchaElementLoad&render=explicit' async defer></script>
+
+  <div class="input-group">
+    <div class="checkbox">
+      <label>
+        <% checked_pop = params.has_key?("g-recaptcha-response") && params["g-recaptcha-response"].empty? && params.has_key?(resource_name) && !params[resource_name]["terms_of_service"].empty? && params[resource_name]["terms_of_service"]=="1" %>
+        <%= f.check_box :terms_of_service, value: checked_pop ? 1 : 0, id: "login-remember", checked: checked_pop ? true : false, :style => "width: 30px; height: 30px;"%>
+        <div style="padding-left:20px;">
+          I've read and agree to the Excoincial.com
+          <a href="/login_terms_cond" target="_blank">Terms & Conditions</a>
+          and <a href="/login_privacy" target="_blank">Privacy Policy</a>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <% if params[:referral_code] %>
+    <%= f.hidden_field :referral_code %>
+  <% else if params.has_key?(resource_name) && params[resource_name][:referral_code] %>
+    <%= f.hidden_field( :referral_code, :value => params[resource_name]["referral_code"]) %>
+  <% end end %>
+
+  <div align="center">
+    <div class="btntext">
+      <%= f.submit 'Sign Up', class: 'btn site-btn btn-gray mt-20 text-uppercase nova-font-bold' %>
+    </div>
+    <div class="mui-textfield btntexts">
+      <h5 class="">Already have an account?
+        <a href="/login">SIGN IN</a>
+      </h5>
+    </div>
+  </div>
+
+<!--  <div class="mt-4">-->
+    <%#= f.submit 'Submit', class: 'btn btn-block btn-success col-6' %>
+<!--  </div>-->
+<% end %>

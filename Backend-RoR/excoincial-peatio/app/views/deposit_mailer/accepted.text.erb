@@ -1,0 +1,5 @@
+Dear <%= @deposit.member.email %>,
+
+Your <%= ENV.fetch('SENDER_NAME').upcase %> account has been deposited with
+<%= @deposit.amount.to_f.round(3)%>
+<%= @deposit.currency_id.upcase %>

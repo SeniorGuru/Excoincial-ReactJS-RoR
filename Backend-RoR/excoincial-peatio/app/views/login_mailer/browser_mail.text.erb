@@ -1,0 +1,17 @@
+<%= ENV.fetch('SENDER_NAME').upcase %> AUTHORIZE NEW IP
+
+Dear <%= @member.email%>,
+
+A login attempt has been made to your <%= ENV.fetch('SENDER_NAME').upcase %> account <%=@member.email%>.
+Login attempt details
+-----------------------------------
+
+IP Address: <%= @ip %>
+Location: <%= @city %>
+Web browser: <%= @browser %>
+
+If you DID this yourself
+-----------------------------------
+
+* To verify your login attempt, open this link in the same browser where you entered your username and password.
+<%= root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id+@login_referer_path %>

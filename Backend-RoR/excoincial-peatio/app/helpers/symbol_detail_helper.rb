@@ -1,0 +1,2 @@
+module SymbolDetailHelper
+end

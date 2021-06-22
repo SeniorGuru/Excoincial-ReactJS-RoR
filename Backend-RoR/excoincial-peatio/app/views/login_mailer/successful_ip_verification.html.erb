@@ -1,0 +1,10 @@
+<h3><%= ENV.fetch('SENDER_NAME').upcase %> SUCCESSFUL LOGIN FROM NEW IP</h3>
+<p>Dear <%= @member.email%>,</p>
+<p>This is to notify you of a successful confirmation of IP address.</p>
+<p>-----------------------------------</p>
+<p>Email: <%= @member.email%></p>
+<p>Device: <%= @browser %></p>
+<p>Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %></p>
+<p>IP Address: <%= @ip %></p>
+<p>Location: <%= @city %></p>
+<p>-----------------------------------</p>

@@ -1,0 +1,13 @@
+<%= ENV.fetch('SENDER_NAME').upcase %> SUCCESSFUL LOGIN FROM NEW IP
+
+Dear <%= @member.email%>,
+
+This is to notify you of a successful confirmation of IP address.
+
+-----------------------------------
+Email: <%= @member.email%>
+Device: <%= @browser %>
+Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %>
+IP Address: <%= @ip %>
+Location: <%= @city %>
+-----------------------------------

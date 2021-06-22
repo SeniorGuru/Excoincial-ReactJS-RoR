@@ -1,0 +1,61 @@
+# List of Barong administrators.
+#
+# Other parameters that you can set here can be found in Account,
+# Profile and Phone models (e.g. app/models/account.rb...); all the
+# model properties are listed at the very bottom of this models files.
+#
+# Note: email is the only required field here.
+accounts:
+  - account:
+      email: <%= ENV.fetch('ADMIN_EMAIL', 'admin@barong.io') %>
+      password: <%= ENV.fetch('ADMIN_PASSWORD', nil) %>
+      role: 'admin'
+      state: 'active'
+
+users:
+  - account:
+      email: don.chancellor88@gmail.com
+      password: <%= ENV.fetch('DEFAULT_CREATE_PASSWORD', nil) %>
+      role: 'member'
+      state: 'active'
+      level: '1'
+    phone:
+      number: '4368864980597'
+    profile:
+      first_name: Don
+      last_name: Chancellor
+      dob: '1992-08-27'
+      address: 'Stephansplatz 1'
+      postcode: '1010'
+      city: Vienna
+      country: AT
+#    documentation:
+#      doc_type: Passport
+#      doc_number: 12345678
+#      upload: Madeleine_passport_copy.jpg
+#      expired: '2019-09-12'
+
+
+# List of applications that will use Barong OAuth.
+# You can set any Doorkeeper::Application property here.
+#
+# Note: in production env, `redirect_uri` can only be a 'https' url.
+applications:
+  - name: Peatio
+    redirect_uri: https://excoincial.com/auth/barong/callback
+    skipauth: true
+    # uid: setid
+    # scopes:
+    #   - peatio
+    #   - barong
+
+levels:
+  - key: email
+    value: verified
+    description: "User clicked on the confirmation link"
+#  - key: phone
+#    value: verified
+#    description: "User entered a valid code from sms"
+  - key: document
+    value: verified
+    description: "User personal documents have been verified"

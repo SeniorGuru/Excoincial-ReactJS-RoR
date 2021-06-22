@@ -1,0 +1,12 @@
+<%= ENV.fetch('SENDER_NAME').upcase %> LOGIN
+
+Dear <%= @member.email%>,
+
+This is to notify you of a successful login to your account. 
+
+-----------------------------------
+Login Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %>
+Location: <%= @city %>
+IP Address: <%= @ip %>
+User Agent: <%= @browser %>
+-----------------------------------

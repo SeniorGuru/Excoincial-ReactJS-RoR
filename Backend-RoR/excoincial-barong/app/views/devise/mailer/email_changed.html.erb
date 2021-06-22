@@ -1,0 +1,20 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> EMAIL CHANGED
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Hi <%= @resource.profile.first_name rescue @resource.email %>,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    We're contacting you to notify you that your email 
+<% if @resource.try(:unconfirmed_email?) %>
+    is being changed to <%= @resource.unconfirmed_email %>.
+<% else %>
+    has been changed to <%= @resource.email %>.
+<% end %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;
+

@@ -1,0 +1,89 @@
+<div id="order_book" class="flex-cont">
+<!--  <div class="panel-body panel-body-head">-->
+<!--    <div id="order_book_header" class="row">-->
+<!--      <div class="col-xs-12 col-left">-->
+<!--        <table class="table">-->
+<!--          <thead>-->
+<!--            <tr>-->
+<!--              <th class="amount text-right col-xs-10">-->
+                <%#= t('.amount') %>
+<!--              </th>-->
+<!--              <th class="volume text-right col-xs-7">-->
+                <%#= t('.volume') %>
+<!--              </th>-->
+<!--              <th class="price text-right col-xs-7">-->
+                <%#= t('.bid') %>
+<!--              </th>-->
+<!--            </tr>-->
+<!--          </thead>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--      <div class="col-xs-12">-->
+<!--        <table class="table table-head">-->
+<!--          <thead>-->
+<!--            <tr>-->
+<!--              <th class="price text-right col-xs-7">-->
+                <%#= t('.ask') %>
+<!--              </th>-->
+<!--              <th class="volume text-right col-xs-7">-->
+                <%#= t('.volume') %>
+<!--              </th>-->
+<!--              <th class="amount text-right col-xs-10">-->
+                <%#= t('.amount') %>
+<!--              </th>-->
+<!--            </tr>-->
+<!--          </thead>-->
+<!--        </table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <div class="col-md-6 col-sm-6 col-xs-12 stcontf">
+    <div class="inner-box">
+      <h3 class="page-header text-uppercase no-icon"><span
+        class="bottom-line">BUY ORDERS</span></h3>
+      <div style="padding-top:0px;padding-left:20px;padding-right:20px;">
+        <div class="table-responsive table site-table-fg">
+          <table width="100%" class="myTable table tbg keywords f-td-left" id="buy-orders-table">
+            <thead>
+            <th class="text-left">Price <%= "(#{@current_market.fetch(:bid_unit).upcase})" %></th>
+            <th class="text-left">Amount <%= "(#{@current_market.fetch(:ask_unit).upcase})"%></th>
+            <th class="text-left" nowrap="nowrap" style="width: 100px;">TOTAL <%= "(#{@current_market.fetch(:bid_unit).upcase})"%></th>
+            </thead>
+            <tbody class="bids"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-6 col-xs-12 stcontf">
+    <div class="inner-box">
+      <h3 class="page-header text-uppercase no-icon"><span
+        class="bottom-line">SELL ORDERS</span></h3>
+      <div style="padding-top:0px;padding-left:20px;padding-right:20px;">
+        <div class="table-responsive table site-table-fg">
+          <table width="100%" class="myTable table tbg keywords f-td-left" id="sell-orders-table">
+            <thead>
+            <th class="text-left">Price <%= "(#{@current_market.fetch(:bid_unit).upcase})" %></th>
+            <th class="text-left">Amount <%= "(#{@current_market.fetch(:ask_unit).upcase})"%></th>
+            <th class="text-left">TOTAL <%= "(#{@current_market.fetch(:bid_unit).upcase})"%></th>
+            <tbody class="asks"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--  <div class="panel-body panel-body-content">-->
+<!--    <div id="order_book_body" class="row">-->
+<!--      <div class="col-xs-12 col-left">-->
+<!--        <table class="table table-hover bids"></table>-->
+<!--      </div>-->
+<!--      <div class="col-xs-12">-->
+<!--        <table class="table table-hover asks"></table>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+</div>

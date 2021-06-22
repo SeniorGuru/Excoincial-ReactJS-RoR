@@ -1,0 +1,112 @@
+<div class="loader"></div>
+<header>
+  <section class="bannerbg">
+    <div id="particles-js"></div>
+    <div class="headertxt">
+      <%= render 'shared/menu' %>
+      <%= render 'shared/flash' %>
+    </div>
+    <div class="container slidertext animatedParent">
+      <div class="row banner-content animated growIn go">
+        <div class="col-md-12 text-center col-xs-12">
+          <h1 class="fnt-bld fnt-size text-uppercase t-white">THE MOST TRUSTED PLATFORM FOR TRADING FIAT &
+            CRYPTOCURRENCIES </h1>
+          <h4 class="mt-0 t-white fnt-reg h4">We offer newbies and professional traders the possibility to trade a
+            variety of digital assets on a highly secure, insurance backed Exchange platform.</h4>
+          <div class="text-center banner-btns">
+            <%= link_to 'View Exchange', trading_path(current_market.id), class: 'btn btn-link' %>
+          </div>
+
+<!--          <?php-->
+<!--                use App\Http\Controllers\tradeController;-->
+<!--                $placa = new tradeController;-->
+<!--                ?>-->
+
+          <div class="coin-pairs-section">
+            <div class="container-fluid animatedParent">
+              <div class="table-content animated fadeInUp go">
+<!--                <div class="coins-name-whl">-->
+<!--                  <div class="coin-value-whl">-->
+<!--                    <i><img src="/images/color-icon/afcash.png" class="img-responsive"></i>-->
+<!--                    <div class="coin-value tt-bluef text-uppercase">AFCASH/BTC <span-->
+<!--                      class="up-level"><%#= Global[:afcachbtc].ticker[:price_change_percent] %></span>-->
+<!--                    </div>-->
+<!--                    <div class="coin-value tt-grayf"><%#= Global[:afcachbtc].ticker[:open] %>-->
+<!--                      BTC-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="coin-names">-->
+<!--                    <div class="coin-level"><img src="/images/chart.png"/></div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="coins-name-whl">-->
+<!--                  <div class="coin-value-whl">-->
+<!--                    <i><img src="/images/color-icon/btc.png" class="img-responsive"></i>-->
+<!--                    <div class="coin-value tt-bluef text-uppercase">BTC/AFCASH <span-->
+<!--                      class="up-level"><%#= Global[:btcafcach].ticker[:price_change_percent] %></span>-->
+<!--                    </div>-->
+<!--                    <div class="coin-value tt-grayf"><%#= Global[:btcafcach].ticker[:open] %>-->
+<!--                      AFCASH-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="coin-names">-->
+<!--                    <div class="coin-level"><img src="/images/chart.png"/></div>-->
+<!--                  </div>-->
+<!--                </div>-->
+
+                <div class="coins-name-whl">
+                  <div class="coin-value-whl coinpr">
+                    <i><img src="/images/color-icon/afcash.png" class="img-responsive"></i>
+                    <div class="coin-value tt-bluef text-uppercase">XRP/AFCASH <span
+                      class="up-level"><%= Global[:xrpafcash].ticker[:price_change_percent] %></span>
+                    </div>
+                    <div class="coin-value tt-grayf"><%= Global[:xrpafcash].ticker[:open] %>
+                      AFCASH
+                    </div>
+                  </div>
+                  <div class="coin-names">
+                    <div class="coin-level"><img src="/images/chart.png"/></div>
+                  </div>
+                </div>
+
+                <div class="coins-name-whl">
+                  <div class="coin-value-whl coinpr">
+                    <i><img src="/images/color-icon/eth.png" class="img-responsive"></i>
+                    <div class="coin-value tt-bluef text-uppercase">AFCASH/ETH <span
+                      class="up-level"><%= Global[:afcasheth].ticker[:price_change_percent] %></span>
+                    </div>
+                    <div class="coin-value tt-grayf"><%= Global[:afcasheth].ticker[:open] %>
+                      ETH
+                    </div>
+                  </div>
+                  <div class="coin-names">
+                    <div class="coin-level"><img src="/images/chart.png"/></div>
+                  </div>
+                </div>
+
+                <div class="coins-name-whl">
+                  <div class="coin-value-whl coinpr">
+                    <i><img src="/images/color-icon/btc.png" class="img-responsive"></i>
+                    <div class="coin-value tt-bluef text-uppercase">AFCASH/BTC <span
+                      class="up-level"><%= Global[:afcashbtc].ticker[:price_change_percent] %></span>
+                    </div>
+                    <div class="coin-value tt-grayf"><%= Global[:afcashbtc].ticker[:open] %>
+                      BTC
+                    </div>
+                  </div>
+                  <div class="coin-names">
+                    <div class="coin-level"><img src="/images/chart.png"/></div>
+                  </div>
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>

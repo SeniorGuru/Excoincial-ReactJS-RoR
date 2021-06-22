@@ -1,0 +1,2378 @@
+{
+    "basePath": "/api",
+    "definitions": {
+        "Account": {
+            "description": "Get list of user accounts",
+            "properties": {
+                "balance": {
+                    "description": "Account balance.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "currency": {
+                    "description": "Currency code.",
+                    "type": "string"
+                },
+                "locked": {
+                    "description": "Account locked funds.",
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "Currency": {
+            "description": "Get a currency",
+            "properties": {
+                "base_factor": {
+                    "description": "Currency base factor",
+                    "example": 1000000000000000000,
+                    "type": "string"
+                },
+                "deposit_fee": {
+                    "description": "Currency deposit fee",
+                    "example": "0.0",
+                    "type": "string"
+                },
+                "explorer_address": {
+                    "description": "Currency address exprorer url template",
+                    "example": "https://testnet.blockchain.info/address/",
+                    "type": "string"
+                },
+                "explorer_transaction": {
+                    "description": "Currency transaction exprorer url template",
+                    "example": "https://testnet.blockchain.info/tx/",
+                    "type": "string"
+                },
+                "icon_url": {
+                    "description": "Currency icon",
+                    "example": "https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "Currency code.",
+                    "example": "afcash",
+                    "type": "string"
+                },
+                "min_deposit_amount": {
+                    "description": "Minimal deposit amount",
+                    "example": "50.0",
+                    "type": "string"
+                },
+                "min_withdraw_amount": {
+                    "description": "Minimal withdraw amount",
+                    "example": "0.0",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Currency name",
+                    "example": "AFCASH",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Currency precision",
+                    "example": 8,
+                    "type": "string"
+                },
+                "symbol": {
+                    "description": "Currency symbol",
+                    "example": "A",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Currency type",
+                    "example": "coin",
+                    "type": "string"
+                },
+                "withdraw_fee": {
+                    "description": "Currency withdraw fee",
+                    "example": "0.0",
+                    "type": "string"
+                },
+                "withdraw_limit_24h": {
+                    "description": "Currency 24h withdraw limit",
+                    "example": "50.0",
+                    "type": "string"
+                },
+                "withdraw_limit_72h": {
+                    "description": "Currency 72h withdraw limit",
+                    "example": "600.0",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Deposit": {
+            "description": "Returns deposit fees for currencies.",
+            "properties": {
+                "amount": {
+                    "description": "Deposit amount.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "completed_at": {
+                    "description": "The datetime when deposit was completed..",
+                    "type": "string"
+                },
+                "confirmations": {
+                    "description": "Number of deposit confirmations.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "created_at": {
+                    "description": "The datetime when deposit was created.",
+                    "type": "string"
+                },
+                "currency": {
+                    "description": "Deposit currency id.",
+                    "type": "string"
+                },
+                "fee": {
+                    "description": "Deposit fee.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "id": {
+                    "description": "Unique deposit id.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "state": {
+                    "description": "Deposit state.",
+                    "type": "string"
+                },
+                "txid": {
+                    "description": "Deposit transaction id.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Market": {
+            "description": "Get all available markets.",
+            "properties": {
+                "id": {
+                    "description": "Unique market id. It's always in the form of xxxyyy,where xxx is the base currency code, yyy is the quotecurrency code, e.g. 'btcusd'. All available markets canbe found at /api/v2/markets.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Market name.",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Member": {
+            "description": "Get your profile and accounts info.",
+            "properties": {
+                "accounts": {
+                    "$ref": "#/definitions/Account"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "sn": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Order": {
+            "description": "Get information of specified order.",
+            "properties": {
+                "avg_price": {
+                    "description": "Average execution price, average of price in trades.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "created_at": {
+                    "description": "Order create time in iso8601 format.",
+                    "type": "string"
+                },
+                "executed_volume": {
+                    "description": "The executed volume, see 'volume'.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "id": {
+                    "description": "Unique order id.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "market": {
+                    "description": "The market in which the order is placed, e.g. 'btcusd'.All available markets can be found at /api/v2/markets.",
+                    "type": "string"
+                },
+                "ord_type": {
+                    "description": "Type of order, either 'limit' or 'market'.",
+                    "type": "string"
+                },
+                "price": {
+                    "description": "Price for each unit. e.g.If you want to sell/buy 1 btc at 3000 usd, the price is '3000.0'",
+                    "format": "double",
+                    "type": "number"
+                },
+                "remaining_volume": {
+                    "description": "The remaining volume, see 'volume'.",
+                    "format": "double",
+                    "type": "number"
+                },
+                "side": {
+                    "description": "Either 'sell' or 'buy'.",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "One of 'wait', 'done', or 'cancel'.An order in 'wait' is an active order, waiting fulfillment;a 'done' order is an order fulfilled;'cancel' means the order has been canceled.",
+                    "type": "string"
+                },
+                "trades": {
+                    "description": "Trades wiht this order.",
+                    "items": {
+                        "$ref": "#/definitions/Trade"
+                    },
+                    "type": "array"
+                },
+                "trades_count": {
+                    "description": "Count of trades.",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "volume": {
+                    "description": "The amount user want to sell/buy.An order could be partially executed,e.g. an order sell 5 btc can be matched with a buy 3 btc order,left 2 btc to be sold; in this case the order's volume would be '5.0',its remaining_volume would be '2.0', its executed volume is '3.0'.",
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "type": "object"
+        },
+        "OrderBook": {
+            "description": "Get the order book of specified market.",
+            "properties": {
+                "asks": {
+                    "$ref": "#/definitions/Order"
+                },
+                "bids": {
+                    "$ref": "#/definitions/Order"
+                }
+            },
+            "type": "object"
+        },
+        "Trade": {
+            "description": "Get currency trades at last 24h",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "funds": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "maker_type": {
+                    "type": "string"
+                },
+                "market": {
+                    "type": "string"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "string"
+                },
+                "side": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "volume": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Withdraw": {
+            "description": "Returns withdraw fees for currencies.",
+            "properties": {
+                "amount": {
+                    "type": "string"
+                },
+                "blockchain_txid": {
+                    "type": "string"
+                },
+                "confirmations": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "done_at": {
+                    "type": "string"
+                },
+                "fee": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "rid": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "host": "excoincial.com",
+    "info": {
+        "contact": {
+            "email": "aleksander@africunia.org",
+            "name": "Oleksandr Papevis CTO of Excoincial Exchange, Head of Support Africunia Bank",
+            "url": "https://excoincial.com"
+        },
+        "description": "Member API is API which can be used by client application like SPA.",
+        "license": {
+            "url": "https://github.com/africunia/excoincial-api/blob/master/LICENSE.md"
+        },
+        "title": "Member API v2",
+        "version": "1.9.19"
+    },
+    "paths": {
+        "/v2/accounts": {
+            "get": {
+                "description": "Get list of user accounts",
+                "operationId": "getV2Accounts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get list of user accounts",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Account"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "accounts"
+                ]
+            }
+        },
+        "/v2/accounts/{currency}": {
+            "get": {
+                "description": "Get user account by currency",
+                "operationId": "getV2AccountsCurrency",
+                "parameters": [
+                    {
+                        "description": "The currency code.",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "usd",
+                            "xlmgold",
+                            "xrp"
+                        ],
+                        "in": "path",
+                        "name": "currency",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get user account by currency",
+                        "schema": {
+                            "$ref": "#/definitions/Account"
+                        }
+                    }
+                },
+                "tags": [
+                    "accounts"
+                ]
+            }
+        },
+        "/v2/currencies": {
+            "get": {
+                "description": "Get list of currencies",
+                "operationId": "getV2Currencies",
+                "parameters": [
+                    {
+                        "description": "Currency type",
+                        "enum": [
+                            "fiat",
+                            "coin"
+                        ],
+                        "in": "query",
+                        "name": "type",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get list of currencies",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Currency"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "currencies"
+                ]
+            }
+        },
+        "/v2/currencies/{id}": {
+            "get": {
+                "description": "Get a currency",
+                "operationId": "getV2CurrenciesId",
+                "parameters": [
+                    {
+                        "description": "Currency code.",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "usd",
+                            "xlmgold",
+                            "xrp",
+                            "AFCASH",
+                            "BTC",
+                            "BTX",
+                            "ETA",
+                            "ETH",
+                            "GMC",
+                            "KIT",
+                            "LTC",
+                            "REEX",
+                            "TUSD",
+                            "USD",
+                            "XLMGOLD",
+                            "XRP"
+                        ],
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get a currency",
+                        "schema": {
+                            "$ref": "#/definitions/Currency"
+                        }
+                    }
+                },
+                "tags": [
+                    "currencies"
+                ]
+            }
+        },
+        "/v2/currency/trades": {
+            "get": {
+                "description": "Get currency trades at last 24h",
+                "operationId": "getV2CurrencyTrades",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "usd",
+                            "xlmgold",
+                            "xrp",
+                            "AFCASH",
+                            "BTC",
+                            "BTX",
+                            "ETA",
+                            "ETH",
+                            "GMC",
+                            "KIT",
+                            "LTC",
+                            "REEX",
+                            "TUSD",
+                            "USD",
+                            "XLMGOLD",
+                            "XRP"
+                        ],
+                        "in": "query",
+                        "name": "currency",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get currency trades at last 24h",
+                        "schema": {
+                            "$ref": "#/definitions/Trade"
+                        }
+                    }
+                },
+                "tags": [
+                    "currencies"
+                ]
+            }
+        },
+        "/v2/deposit": {
+            "get": {
+                "description": "Get details of specific deposit.",
+                "operationId": "getV2Deposit",
+                "parameters": [
+                    {
+                        "description": "",
+                        "in": "query",
+                        "name": "txid",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get details of specific deposit.",
+                        "schema": {
+                            "$ref": "#/definitions/Deposit"
+                        }
+                    }
+                },
+                "tags": [
+                    "deposit"
+                ]
+            }
+        },
+        "/v2/deposit_address": {
+            "get": {
+                "description": "Returns deposit address for account you want to deposit to. The address may be blank because address generation process is still in progress. If this case you should try again later.",
+                "operationId": "getV2DepositAddress",
+                "parameters": [
+                    {
+                        "description": "The account you want to deposit to.",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "xlmgold",
+                            "xrp",
+                            "AFCASH",
+                            "BTC",
+                            "BTX",
+                            "ETA",
+                            "ETH",
+                            "GMC",
+                            "KIT",
+                            "LTC",
+                            "REEX",
+                            "TUSD",
+                            "XLMGOLD",
+                            "XRP"
+                        ],
+                        "in": "query",
+                        "name": "currency",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Address format legacy/cash",
+                        "enum": [
+                            "legacy",
+                            "cash"
+                        ],
+                        "in": "query",
+                        "name": "address_format",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns deposit address for account you want to deposit to. The address may be blank because address generation process is still in progress. If this case you should try again later.",
+                        "schema": {
+                            "$ref": "#/definitions/Deposit"
+                        }
+                    }
+                },
+                "tags": [
+                    "deposit_address"
+                ]
+            }
+        },
+        "/v2/deposits": {
+            "get": {
+                "description": "Get your deposits history.",
+                "operationId": "getV2Deposits",
+                "parameters": [
+                    {
+                        "description": "Currency value contains afcash,btc,btx,eta,eth,gmc,kit,ltc,reex,tusd,usd,xlmgold,xrp,AFCASH,BTC,BTX,ETA,ETH,GMC,KIT,LTC,REEX,TUSD,USD,XLMGOLD,XRP",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "usd",
+                            "xlmgold",
+                            "xrp",
+                            "AFCASH",
+                            "BTC",
+                            "BTX",
+                            "ETA",
+                            "ETH",
+                            "GMC",
+                            "KIT",
+                            "LTC",
+                            "REEX",
+                            "TUSD",
+                            "USD",
+                            "XLMGOLD",
+                            "XRP"
+                        ],
+                        "in": "query",
+                        "name": "currency",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": 3,
+                        "description": "Set result limit.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "",
+                        "enum": [
+                            "submitted",
+                            "canceled",
+                            "rejected",
+                            "accepted",
+                            "collected"
+                        ],
+                        "in": "query",
+                        "name": "state",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get your deposits history.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Deposit"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "deposits"
+                ]
+            }
+        },
+        "/v2/depth": {
+            "get": {
+                "description": "Get depth or specified market. Both asks and bids are sorted from highest price to lowest.",
+                "operationId": "getV2Depth",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 300,
+                        "description": "Limit the number of returned price levels. Default to 300.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get depth or specified market. Both asks and bids are sorted from highest price to lowest."
+                    }
+                },
+                "tags": [
+                    "depth"
+                ]
+            }
+        },
+        "/v2/fees/deposit": {
+            "get": {
+                "description": "Returns deposit fees for currencies.",
+                "operationId": "getV2FeesDeposit",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns deposit fees for currencies.",
+                        "schema": {
+                            "$ref": "#/definitions/Deposit"
+                        }
+                    }
+                },
+                "tags": [
+                    "fees"
+                ]
+            }
+        },
+        "/v2/fees/trading": {
+            "get": {
+                "description": "Returns trading fees for markets.",
+                "operationId": "getV2FeesTrading",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns trading fees for markets."
+                    }
+                },
+                "tags": [
+                    "fees"
+                ]
+            }
+        },
+        "/v2/fees/withdraw": {
+            "get": {
+                "description": "Returns withdraw fees for currencies.",
+                "operationId": "getV2FeesWithdraw",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns withdraw fees for currencies.",
+                        "schema": {
+                            "$ref": "#/definitions/Withdraw"
+                        }
+                    }
+                },
+                "tags": [
+                    "fees"
+                ]
+            }
+        },
+        "/v2/k": {
+            "get": {
+                "description": "Get OHLC(k line) of specific market.",
+                "operationId": "getV2K",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Time period of K line, default to 1. You can choose between 1, 5, 15, 30, 60, 120, 240, 360, 720, 1440, 4320, 10080",
+                        "enum": [
+                            1,
+                            5,
+                            15,
+                            30,
+                            60,
+                            120,
+                            240,
+                            360,
+                            720,
+                            1440,
+                            4320,
+                            10080
+                        ],
+                        "format": "int32",
+                        "in": "query",
+                        "name": "period",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only k-line data after that time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "time_from",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only k-line data till that time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "time_to",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 30,
+                        "description": "Limit the number of returned data points default to 30. Ignored if time_from and time_to are given.",
+                        "format": "int32",
+                        "in": "query",
+                        "maximum": 10000,
+                        "minimum": 1,
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get OHLC(k line) of specific market."
+                    }
+                },
+                "tags": [
+                    "k"
+                ]
+            }
+        },
+        "/v2/k_with_pending_trades": {
+            "get": {
+                "deprecated": true,
+                "description": "Get K data with pending trades, which are the trades not included in K data yet, because there's delay between trade generated and processed by K data generator.",
+                "operationId": "getV2KWithPendingTrades",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "The trade id of the first trade you received.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "trade_id",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Time period of K line, default to 1. You can choose between 1, 5, 15, 30, 60, 120, 240, 360, 720, 1440, 4320, 10080",
+                        "enum": [
+                            1,
+                            5,
+                            15,
+                            30,
+                            60,
+                            120,
+                            240,
+                            360,
+                            720,
+                            1440,
+                            4320,
+                            10080
+                        ],
+                        "format": "int32",
+                        "in": "query",
+                        "name": "period",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only k-line data after that time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "time_from",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only k-line data till that time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "time_to",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 30,
+                        "description": "Limit the number of returned data points, default to 30.",
+                        "format": "int32",
+                        "in": "query",
+                        "maximum": 10000,
+                        "minimum": 1,
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get K data with pending trades, which are the trades not included in K data yet, because there's delay between trade generated and processed by K data generator."
+                    }
+                },
+                "tags": [
+                    "k_with_pending_trades"
+                ]
+            }
+        },
+        "/v2/markets": {
+            "get": {
+                "description": "Get all available markets.",
+                "operationId": "getV2Markets",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get all available markets.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Market"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "markets"
+                ]
+            }
+        },
+        "/v2/member_levels": {
+            "get": {
+                "description": "Returns list of member levels and the privileges they provide.",
+                "operationId": "getV2MemberLevels",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns list of member levels and the privileges they provide."
+                    }
+                },
+                "tags": [
+                    "member_levels"
+                ]
+            }
+        },
+        "/v2/members/me": {
+            "get": {
+                "description": "Get your profile and accounts info.",
+                "operationId": "getV2MembersMe",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get your profile and accounts info.",
+                        "schema": {
+                            "$ref": "#/definitions/Member"
+                        }
+                    }
+                },
+                "tags": [
+                    "members"
+                ]
+            }
+        },
+        "/v2/order": {
+            "get": {
+                "description": "Get information of specified order.",
+                "operationId": "getV2Order",
+                "parameters": [
+                    {
+                        "description": "",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get information of specified order.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "order"
+                ]
+            }
+        },
+        "/v2/order/delete": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "Cancel an order.",
+                "operationId": "postV2OrderDelete",
+                "parameters": [
+                    {
+                        "description": "",
+                        "format": "int32",
+                        "in": "formData",
+                        "name": "id",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Cancel an order.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "order"
+                ]
+            }
+        },
+        "/v2/order_book": {
+            "get": {
+                "description": "Get the order book of specified market.",
+                "operationId": "getV2OrderBook",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 20,
+                        "description": "Limit the number of returned sell orders. Default to 20.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "asks_limit",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 20,
+                        "description": "Limit the number of returned buy orders. Default to 20.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "bids_limit",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get the order book of specified market.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/OrderBook"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "order_book"
+                ]
+            }
+        },
+        "/v2/orders": {
+            "get": {
+                "description": "Get your orders, results is paginated.",
+                "operationId": "getV2Orders",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": "wait",
+                        "description": "Filter order by state, default to 'wait' (active orders).",
+                        "enum": [
+                            "wait",
+                            "done",
+                            "cancel"
+                        ],
+                        "in": "query",
+                        "name": "state",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": 100,
+                        "description": "Limit the number of returned orders, default to 100.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Specify the page of paginated results.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "asc",
+                        "description": "If set, returned orders will be sorted in specific order, default to 'asc'.",
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "in": "query",
+                        "name": "order_by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get your orders, results is paginated.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "orders"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "Create a Sell/Buy order.",
+                "operationId": "postV2Orders",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "formData",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "",
+                        "enum": [
+                            "sell",
+                            "buy"
+                        ],
+                        "in": "formData",
+                        "name": "side",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "",
+                        "format": "float",
+                        "in": "formData",
+                        "name": "volume",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "default": "limit",
+                        "description": "",
+                        "enum": [
+                            "market",
+                            "limit"
+                        ],
+                        "in": "formData",
+                        "name": "ord_type",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "description": "",
+                        "format": "float",
+                        "in": "formData",
+                        "name": "price",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Create a Sell/Buy order.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "tags": [
+                    "orders"
+                ]
+            }
+        },
+        "/v2/orders/clear": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "Cancel all my orders.",
+                "operationId": "postV2OrdersClear",
+                "parameters": [
+                    {
+                        "description": "If present, only sell orders (asks) or buy orders (bids) will be canncelled.",
+                        "enum": [
+                            "sell",
+                            "buy"
+                        ],
+                        "in": "formData",
+                        "name": "side",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Cancel all my orders.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "orders"
+                ]
+            }
+        },
+        "/v2/orders/multi": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "Create multiple sell/buy orders.",
+                "operationId": "postV2OrdersMulti",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "formData",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "",
+                        "in": "formData",
+                        "items": {
+                            "enum": [
+                                "sell",
+                                "buy"
+                            ],
+                            "type": "string"
+                        },
+                        "name": "orders[side]",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "description": "",
+                        "in": "formData",
+                        "items": {
+                            "format": "float",
+                            "type": "number"
+                        },
+                        "name": "orders[volume]",
+                        "required": true,
+                        "type": "array"
+                    },
+                    {
+                        "description": "",
+                        "in": "formData",
+                        "items": {
+                            "default": "limit",
+                            "enum": [
+                                "market",
+                                "limit"
+                            ],
+                            "type": "string"
+                        },
+                        "name": "orders[ord_type]",
+                        "required": false,
+                        "type": "array"
+                    },
+                    {
+                        "description": "",
+                        "in": "formData",
+                        "items": {
+                            "format": "float",
+                            "type": "number"
+                        },
+                        "name": "orders[price]",
+                        "required": true,
+                        "type": "array"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Create multiple sell/buy orders.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "orders"
+                ]
+            }
+        },
+        "/v2/sessions": {
+            "delete": {
+                "description": "Delete all user sessions.",
+                "operationId": "deleteV2Sessions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Delete all user sessions."
+                    }
+                },
+                "tags": [
+                    "sessions"
+                ]
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "description": "Create new user session.",
+                "operationId": "postV2Sessions",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Create new user session."
+                    }
+                },
+                "tags": [
+                    "sessions"
+                ]
+            }
+        },
+        "/v2/tickers": {
+            "get": {
+                "description": "Get ticker of all markets.",
+                "operationId": "getV2Tickers",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get ticker of all markets."
+                    }
+                },
+                "tags": [
+                    "tickers"
+                ]
+            }
+        },
+        "/v2/tickers/{market}": {
+            "get": {
+                "description": "Get ticker of specific market.",
+                "operationId": "getV2TickersMarket",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "path",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get ticker of specific market."
+                    }
+                },
+                "tags": [
+                    "tickers"
+                ]
+            }
+        },
+        "/v2/timestamp": {
+            "get": {
+                "description": "Get server current time, in seconds since Unix epoch.",
+                "operationId": "getV2Timestamp",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get server current time, in seconds since Unix epoch."
+                    }
+                },
+                "tags": [
+                    "timestamp"
+                ]
+            }
+        },
+        "/v2/trades": {
+            "get": {
+                "description": "Get recent trades on market, each trade is included only once. Trades are sorted in reverse creation order.",
+                "operationId": "getV2Trades",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 50,
+                        "description": "Limit the number of returned trades. Default to 50.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only trades executed before the time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "timestamp",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Trade id. If set, only trades created after the trade will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Trade id. If set, only trades created before the trade will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "to",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "desc",
+                        "description": "If set, returned trades will be sorted in specific order, default to 'desc'.",
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "in": "query",
+                        "name": "order_by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get recent trades on market, each trade is included only once. Trades are sorted in reverse creation order.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Trade"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "trades"
+                ]
+            }
+        },
+        "/v2/trades/my": {
+            "get": {
+                "description": "Get your executed trades. Trades are sorted in reverse creation order.",
+                "operationId": "getV2TradesMy",
+                "parameters": [
+                    {
+                        "description": "",
+                        "enum": [
+                            "afcashbtc",
+                            "afcasheth",
+                            "afcashusd",
+                            "btcusd",
+                            "btxafcash",
+                            "btxbtc",
+                            "btxeth",
+                            "btxusd",
+                            "etaafcash",
+                            "etabtc",
+                            "etaeth",
+                            "etausd",
+                            "ethbtc",
+                            "ethusd",
+                            "gmcafcash",
+                            "gmcbtc",
+                            "gmceth",
+                            "gmctusd",
+                            "gmcusd",
+                            "kitafcash",
+                            "kitbtc",
+                            "kiteth",
+                            "kitusd",
+                            "reexafcash",
+                            "reexbtc",
+                            "reexeth",
+                            "reexusd",
+                            "tusdbtc",
+                            "tusdeth",
+                            "xlmgoldbtc",
+                            "xlmgoldeth",
+                            "xlmgoldtusd",
+                            "xlmgoldusd",
+                            "xrpafcash",
+                            "xrpbtc",
+                            "xrpeth",
+                            "xrptusd",
+                            "xrpusd"
+                        ],
+                        "in": "query",
+                        "name": "market",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "default": 50,
+                        "description": "Limit the number of returned trades. Default to 50.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "An integer represents the seconds elapsed since Unix epoch. If set, only trades executed before the time will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "timestamp",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Trade id. If set, only trades created after the trade will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Trade id. If set, only trades created before the trade will be returned.",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "to",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": "desc",
+                        "description": "If set, returned trades will be sorted in specific order, default to 'desc'.",
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ],
+                        "in": "query",
+                        "name": "order_by",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get your executed trades. Trades are sorted in reverse creation order.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Trade"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "trades"
+                ]
+            }
+        },
+        "/v2/tradingview/config": {
+            "get": {
+                "description": "Returns TradingView Config",
+                "operationId": "getV2TradingviewConfig",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns TradingView Config"
+                    }
+                },
+                "tags": [
+                    "tradingview"
+                ]
+            }
+        },
+        "/v2/tradingview/history": {
+            "get": {
+                "description": "Returns history bars",
+                "operationId": "getV2TradingviewHistory",
+                "parameters": [
+                    {
+                        "description": "Symbol Name",
+                        "in": "query",
+                        "name": "symbol",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "resolution",
+                        "in": "query",
+                        "name": "resolution",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "description": "Symbol Name",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "from",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "description": "Symbol Name",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "to",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns history bars"
+                    }
+                },
+                "tags": [
+                    "tradingview"
+                ]
+            }
+        },
+        "/v2/tradingview/symbols": {
+            "get": {
+                "description": "Returns Symbols",
+                "operationId": "getV2TradingviewSymbols",
+                "parameters": [
+                    {
+                        "description": "Symbol Name",
+                        "in": "query",
+                        "name": "symbol",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns Symbols"
+                    }
+                },
+                "tags": [
+                    "tradingview"
+                ]
+            }
+        },
+        "/v2/tradingview/time": {
+            "get": {
+                "description": "Returns system time",
+                "operationId": "getV2TradingviewTime",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Returns system time"
+                    }
+                },
+                "tags": [
+                    "tradingview"
+                ]
+            }
+        },
+        "/v2/withdraws": {
+            "get": {
+                "description": "List your withdraws as paginated collection.",
+                "operationId": "getV2Withdraws",
+                "parameters": [
+                    {
+                        "description": "Any supported currencies: afcash,btc,btx,eta,eth,gmc,kit,ltc,reex,tusd,usd,xlmgold,xrp,AFCASH,BTC,BTX,ETA,ETH,GMC,KIT,LTC,REEX,TUSD,USD,XLMGOLD,XRP.",
+                        "enum": [
+                            "afcash",
+                            "btc",
+                            "btx",
+                            "eta",
+                            "eth",
+                            "gmc",
+                            "kit",
+                            "ltc",
+                            "reex",
+                            "tusd",
+                            "usd",
+                            "xlmgold",
+                            "xrp",
+                            "AFCASH",
+                            "BTC",
+                            "BTX",
+                            "ETA",
+                            "ETH",
+                            "GMC",
+                            "KIT",
+                            "LTC",
+                            "REEX",
+                            "TUSD",
+                            "USD",
+                            "XLMGOLD",
+                            "XRP"
+                        ],
+                        "in": "query",
+                        "name": "currency",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "default": 1,
+                        "description": "Page number (defaults to 1).",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "page",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "default": 100,
+                        "description": "Number of withdraws per page (defaults to 100, maximum is 1000).",
+                        "format": "int32",
+                        "in": "query",
+                        "name": "limit",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List your withdraws as paginated collection.",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Withdraw"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "withdraws"
+                ]
+            }
+        }
+    },
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "Bearer": {
+            "in": "header",
+            "name": "JWT",
+            "type": "apiKey"
+        }
+    },
+    "swagger": "2.0",
+    "tags": [
+        {
+            "description": "Operations about tradingviews",
+            "name": "tradingview"
+        },
+        {
+            "description": "Operations about accounts",
+            "name": "accounts"
+        },
+        {
+            "description": "Operations about markets",
+            "name": "markets"
+        },
+        {
+            "description": "Operations about tickers",
+            "name": "tickers"
+        },
+        {
+            "description": "Operations about members",
+            "name": "members"
+        },
+        {
+            "description": "Operations about deposits",
+            "name": "deposits"
+        },
+        {
+            "description": "Operations about deposits",
+            "name": "deposit"
+        },
+        {
+            "description": "Operations about deposit_addresses",
+            "name": "deposit_address"
+        },
+        {
+            "description": "Operations about orders",
+            "name": "orders"
+        },
+        {
+            "description": "Operations about orders",
+            "name": "order"
+        },
+        {
+            "description": "Operations about order_books",
+            "name": "order_book"
+        },
+        {
+            "description": "Operations about depths",
+            "name": "depth"
+        },
+        {
+            "description": "Operations about trades",
+            "name": "trades"
+        },
+        {
+            "description": "Operations about ks",
+            "name": "k"
+        },
+        {
+            "description": "Operations about k_with_pending_trades",
+            "name": "k_with_pending_trades"
+        },
+        {
+            "description": "Operations about timestamps",
+            "name": "timestamp"
+        },
+        {
+            "description": "Operations about withdraws",
+            "name": "withdraws"
+        },
+        {
+            "description": "Operations about sessions",
+            "name": "sessions"
+        },
+        {
+            "description": "Operations about fees",
+            "name": "fees"
+        },
+        {
+            "description": "Operations about member_levels",
+            "name": "member_levels"
+        },
+        {
+            "description": "Operations about currencies",
+            "name": "currencies"
+        }
+    ]
+}

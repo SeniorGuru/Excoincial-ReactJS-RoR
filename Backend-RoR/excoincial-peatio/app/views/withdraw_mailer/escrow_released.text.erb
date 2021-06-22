@@ -1,0 +1,10 @@
+Dear <%= @withdraw.member.email %>,
+
+your <%= ENV.fetch('SENDER_NAME').upcase %> escrow account applied for release
+<%= @withdraw.amount.to_f.round(3) %> <%= @withdraw.currency_id.upcase %>
+to account: <%=@receiver.email.split("@")[0].first%>*****<%=
+@receiver.email.split("@")[0].last %>@<%=
+@receiver.email.split("@")[1] %>
+
+<%= @withdraw.escrow_release_reason %>
+<%= @withdraw.escrow_agreement %>

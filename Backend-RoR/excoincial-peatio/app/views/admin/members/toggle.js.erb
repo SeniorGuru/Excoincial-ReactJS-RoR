@@ -1,0 +1,3 @@
+$('#member-<%= @member.id %> a.toggle-web').text('<%= @member.disabled? ? 'Yes' : 'No' %>');
+$('#member-<%= @member.id %> a.toggle-api').text('<%= @member.api_disabled? ? 'Yes' : 'No' %>');
+$('#member-<%= @member.id %> a.toggle-zero').text('<%= @member.zero_fee? ? 'Yes' : 'No' %>');

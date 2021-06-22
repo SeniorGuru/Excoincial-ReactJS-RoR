@@ -1,0 +1,28 @@
+<%= form_for @bank_detail do |f| %>
+  <div class="form-group">
+    <label>Bank Name</label>
+    <%= f.text_field :bank_name, class: 'form-control',required: true %>
+
+    <label>Account No</label>
+    <%= f.text_field :account_no, class: 'form-control',required: true %>
+
+    <label>Account Name</label>
+    <%= f.text_field :account_name, class: 'form-control',required: true %>
+
+    <label>Swift Code</label>
+    <%= f.text_field :swift_code, class: 'form-control',required: true %>
+
+    <label>IBAN</label>
+    <%= f.text_field :iban, class: 'form-control',required: true %>
+
+    <label>Bank Branch</label>
+    <%= f.text_field :bank_branch, class: 'form-control',required: true %>
+
+    <label>Bank Branch Code</label>
+    <%= f.text_field :bank_branch_code, class: 'form-control',required: true %>
+
+    <label>Bank Address</label>
+    <%= f.text_area :bank_address, class: 'form-control',required: true %>
+  </div>
+  <%= f.submit 'Submit', class: 'btn btn-success' %>
+<% end %>

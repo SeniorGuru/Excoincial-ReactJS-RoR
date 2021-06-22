@@ -1,0 +1,33 @@
+<div class="container site-container">
+<p id="notice"><%= notice %></p>
+
+<h1 class="page-header text-uppercase text-center no-icon">My Rewards</h1>
+
+    <div class="card card-default" id="orders">
+      <div class="card-body">
+        <div class="col-24 table-responsive">
+          <div class="card">
+            <%= table_for @rewards, class: 'table table-condensed table-striped' do |t| %>
+              <% t.column 'ID' do |x| %>
+                <%= x.id %>
+              <% end %>
+              <% t.column 'Type' do |x| %>
+                <%= x.ref_type %>
+              <% end %>
+              <% t.column 'Reward' do |x| %>
+                <span class="h5"><%= x.amount %></span>
+              <% end %>
+              <% t.column 'Referral Member Id' do |x| %>
+                <%= x.ref_member_id %>
+              <% end %>
+              <% t.column 'Created at' do |x| %>
+                <%= l(x.created_at, format: :long) %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+<%= paginate @rewards %>
+</div>

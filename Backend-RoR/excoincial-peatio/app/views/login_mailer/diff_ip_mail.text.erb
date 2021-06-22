@@ -1,0 +1,23 @@
+<%= ENV.fetch('SENDER_NAME').upcase %> AUTHORIZE NEW DEVICE
+
+Dear <%= @member.email%>,
+
+You recently attempted to sign into your <%= ENV.fetch('SENDER_NAME').upcase %> account
+from a new device or in a new location. As a security measure,
+ we require additional confirmation before allowing access
+to your <%= ENV.fetch('SENDER_NAME').upcase %> account.
+
+-----------------------------------
+Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %>
+Location: <%= @city %>
+IP Address: <%= @ip %>
+Browser: <%= @browser %>
+-----------------------------------
+
+If this was legitimate activity, you can authorize your new device below.
+<%= link_to "Authorize This Device",root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id+@login_referer_path %>
+
+If you can't confirm by clicking the button above, please copy the address below to the browser address bar to confirm.
+<%= root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id %>
+
+For security reasons, this link will expire in 30 minutes.

@@ -1,0 +1,91 @@
+    WELCOME TO <%= ENV.fetch('SENDER_NAME').upcase %>
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear User,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Please confirm your registration done from the following IP
+    <%= @resource.current_sign_in_ip %> - <%= @resource.updated_at %>(UTC).
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='center' style='padding-top:0px;'>&nbsp;</td>
+  <td align='center' style='padding-top:0px;'>
+    <%= link_to "CLICK TO VERIFY YOUR ACCOUNT",
+      account_confirmation_url(ViewHelper.with_frontend_domain(confirmation_token: @token)),
+      style: "color:#fff;padding:9px 7px;" +
+        "text-decoration:none;" +
+        "background-color:#f57f28;" +
+        "text-transform:uppercase;" +
+        "font-size:11px;font-weight:600;" %>
+  </td><td align='center' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    If you are unable to confirm by clicking the button above,
+    please copy the address below to the browser address bar to confirm:
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='30' style='padding:0px;'></td></tr>
+<tr><td align='center' style='padding-top:0px;'>&nbsp;</td>
+  <td align='center' style='padding-top:0px;'>
+    <%= link_to account_confirmation_url(@resource, ViewHelper.with_frontend_domain(confirmation_token: @token)),
+      account_confirmation_url(@resource, ViewHelper.with_frontend_domain(confirmation_token: @token)),
+      style: "color:blue;padding:0px;" +
+        "text-decoration:none;" +
+        "text-transform:uppercase;" +
+        "font-size:14px;font-weight:500;" +
+        "word-break: break-all;line-height:20px;" %>
+  </td><td align='center' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='5' style='padding:0px;'>-------------------------------------</td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    5 Security Tips:
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='20' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    * DO NOT give your password to anyone!
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='10' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    * DO NOT call any phone number for someone claiming to
+    be <%= ENV.fetch('SENDER_NAME').upcase %> Support!
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='10' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    * DO NOT send any money to anyone claiming to be a member
+    of <%= ENV.fetch('SENDER_NAME').upcase %>!
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='10' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Enable Google Two Factor Authentication!!
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='10' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    * Make sure you are really visiting
+    <%= link_to "#{ENV.fetch('SENDER_NAME').upcase} at #{ENV.fetch('URL_SCHEME')}://#{ENV.fetch('AUTH_URL_HOST')}",
+      account_confirmation_url(ViewHelper.with_frontend_domain(confirmation_token: @token)),
+      style: "color:#fff;padding:9px 7px;" +
+        "text-decoration:none;" +
+        "background-color:#f57f28;" +
+        "text-transform:uppercase;" +
+        "font-size:11px;font-weight:600;" %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

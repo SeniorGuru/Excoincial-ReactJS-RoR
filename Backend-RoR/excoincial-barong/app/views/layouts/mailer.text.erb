@@ -1,0 +1,26 @@
+<%= yield %>
+<% if @password_change == true %>
+--
+
+Thanks,
+EXCOINCIAL TEAM!
+
+We will never ask you for your password in an email.
+If you don not trust a link in an email,
+go directly to the normal sign in page via
+<%= ENV.fetch('URL_SCHEME','https') %>://<%= ENV.fetch('AUTH_URL_HOST') %>
+<% else %>
+--
+
+Thank you!
+EXCOINCIAL Team
+<% end %>
+<% if @account.present? %>
+
+If this activity is not your own operation, or looks suspicious, please
+disable your account here:
+<%= welcome_disable_account_url(@account.uid) %>
+and contact us immediately on <%= ENV.fetch('ADMIN_EMAIL') %>
+If your account is disabled in this way, it will remain disabled for
+<%= @lock_period %> at least after you contact support.
+<% end %>

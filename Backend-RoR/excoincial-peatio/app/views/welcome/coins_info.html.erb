@@ -1,0 +1,82 @@
+<div class="inner-header">
+  <%= render 'shared/menu' %>
+  <%= render 'shared/flash' %>
+</div>
+
+<div  class="tab-section">
+  <div class="col-xs-3 left-section scrollbar">
+    <div class="search-box">
+      <i class="fa fa-search"></i>
+      <input type="text" autocomplete="off" class="search-input" id="searchSymbol" value="" autofocus="true">
+    </div>
+    <div class="left-menu">
+      <ul class="nav nav-tabs tabs-left">
+        <% @currencies.each_with_index do |currency, index| %>
+          <li class="tab-links" data-search="<%= "#{currency.code.upcase} (#{currency.name})".downcase %>"><a href="#<%= currency.code%>" data-toggle="tab"><%= "#{currency.code.upcase} (#{currency.name})" %></a></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-xs-9 right-section ">
+    <div>
+      <div class="tab-content tab-container-main">
+        <% @currencies.each_with_index do |currency, index| %>
+          <% @currencies_data = @currencies_body.find{|aa| aa['title'] == currency.code.upcase} %>
+          <div class="tab-pane <%= 'active' if index == 0 %>" id="<%= currency.code %>"><%= render 'welcome/coins_details' if @currencies_data%>
+            <div class="content-details-data"><h3>Excoincial-specific rules</h3>
+                <p>Minimum deposit amount: <%= currency.min_deposit_amount.to_s('F')%> <%= currency.code.upcase %><br><gray>
+                * deposit will be reflected in balance
+                once total of incoming confirmed transactions exceeds this amount</gray></p>
+                <p>Minimum withdraw amount: <%= currency.min_withdraw_amount.to_s('F')%> <%= currency.code.upcase %><br><gray>
+                * withdrawal application will get submitted 
+                provided withdrawal amount exceeds this minimum
+                amount and your <%= currency.code.upcase %> balance
+                is sufficent, otherwise submition will not get processed</gray></p>
+            </div>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Scroll JS-->
+
+<script type="text/javascript">
+  // if no Webkit browser
+(function(){
+  let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  let isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+  let scrollbarDiv = document.querySelector('.scrollbar');
+    if (!isChrome && !isSafari) {
+      scrollbarDiv.innerHTML = 'You need Webkit browser to run this code';
+    }
+  })();
+
+setTimeout(function(){
+  $("body").addClass("scrollbar");
+
+  if (window.location.hash=="") {
+    link = $('li.tab-links:first a')
+  } else {
+    link = $(`li.tab-links a[href='${window.location.hash}']`)
+  }
+  link.click()
+  window.location.hash = link.attr('href')
+  $(document).on('click', 'li.tab-links, li.tab-links a', function(e){
+    window.location.hash = e.target.hash
+  })
+
+  $("input#searchSymbol").keyup(function(e){
+    $('li.tab-links').hide()
+    $('li.tab-links').filter(function(a, aa) {
+      return $(aa).data('search').includes(event.target.value.toLowerCase())
+    }).show('slow')
+  })
+}, 1000)
+
+
+
+</script>

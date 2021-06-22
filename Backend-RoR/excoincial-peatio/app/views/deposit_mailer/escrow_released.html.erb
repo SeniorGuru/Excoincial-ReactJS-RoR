@@ -1,0 +1,25 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> INCOMING <%= @reason&.upcase %> ESCROW RELEASE
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear <%= @deposit.member.email %>,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Escrow was released to your <%= ENV.fetch('SENDER_NAME').upcase %> account
+    <%= @deposit.amount.to_f.round(3)%>
+    <%= @deposit.currency_id.upcase %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Escrow origin: <%=@sender.email.split("@")[0].first%>*****<%=@sender.email.split("@")[0].last
+    %>@<%= @sender.email.split("@")[1] %><br />
+    <%= @deposit.escrow_release_reason %><br />
+    <%= @deposit.escrow_agreement %>
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

@@ -1,0 +1,106 @@
+
+<div class="pagecontent">
+  <div class="container-fluid site-container">
+    <div class="bannerpage mt-20">
+      <section class="">
+        <div class="site-theme-form">
+          <div class="row flex-content">
+            <div class="col-md-4 col-sm-8 banner-border white-bgs signinbox center-content form-bg-banner pad-25 icon-form">
+              <div class="split-box">
+                <a href="/funds">Back</a>
+                <div class="banner-border">
+                  <h2 class="page-header text-uppercase text-center no-icon"> <%= @currency.id %> deposit
+                    <hr class="x-line">
+                  </h2>
+                  <ul class="my-form-list">
+                    <li>Send only <%= @currency.name %> to this deposit address. Sending any other currency may result in the loss of your deposit.</li>
+                    <li>After making a deposit, you can track its progress on the <%= link_to "history",account_history_path %> page.</li>
+                    <li>Minimum Deposit : <%= @currency.min_deposit_amount * 1.5 %>0  <%= @currency.id.upcase %></li>
+                  </ul>
+                  <%-
+                    currency_code = Deposit.fiat_code.fetch @currency.id.to_sym, nil
+                  %>
+
+                  <div id="currency_code" style="display: none"><%= @currency.id %></div>
+
+                  <form method="POST" id="upay_form" name="upay_form" action="https://fidelitypaygate.fidelitybank.ng/cipg/MerchantServices/MakePayment.aspx" target="_top">
+                    <input type="hidden" name="mercId" value="83349">
+                    <input type="hidden" name="currCode" value=<%= currency_code %>>
+                    <input type="hidden" name="orderId" id="payment_id" value=<%= @txid %> >
+                    <input type="hidden" name="prod" value="Fiat Deposit">
+                    <div class="panel panel-content panel-default panel-border bottom-line">
+                      <div class="panel-body pad-10">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group  has-feedback">
+                              <label class="col-xs-12 control-label"> <%= @currency.id.upcase %> Amount</label>
+                              <div class="col-xs-12 inputGroupContainer">
+                                <input type="text" name="amt" id="payment_amount" value=<%= @currency.min_deposit_amount * 1.5 %> class="form-control">
+                                <label class="col-xs-12 control-label">Email address</label>
+                                <input type="email" id="payment_email" name="email" value=<%= current_user.email %> class="form-control" >
+                                <input id="submit_fiat" type="button" name="submit_fiat" value="Pay with Visa/MasterCard" class="btn btn-primary" onclick="myFunction()">
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-md-12">
+                            <div class="text-right col-md-12"> Minimum Deposit : <span class="violet-t" id="netfee"> <%#= @currency.min_deposit_amount * 1.5 %>0 </span> <span class="violet-t text-uppercase"> <%#= @currency.id %> </span> </div>
+                          </div> -->
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>                  
+<!--                  <script type ="text/javascript"-->
+<!--                          src="https://fidelitypaygate.fidelitybank.ng/cipg/MerchantServices/UPaybutton.ashx?mercId=83349"-->
+<!--                  ></script>-->
+<!--                  <script type ="text/javascript">-->
+<!--                      upay_settings.setAmount(10);-->
+<!--                      upay_settings.setOrderId('22-Apr-2019');-->
+<!--                      upay_settings.setProduct("sdf");-->
+<!--                      upay_settings.setEmail("test@email"); </script >-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+
+<% content_for :header do %>
+  <div class="fixed-menu">
+    <div class="inner-header">
+      <%= render 'shared/funds_menu' %>
+    </div>
+  </div>
+
+<% end %>
+
+<% content_for :setmode do %>
+  <% if session[:daymode] == 'daymode' %>
+    <li class="day-mode" role="presentation"><a href="/setmode/nightmode"><i class="fa fa-moon-o modeicon" aria-hidden="true"></i></a></li>
+  <% else %>
+    <li class="night-mode" role="presentation"><a href="/setmode/daymode"><i class="fa fa-sun-o modeicon" aria-hidden="true"></i></a></li>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  function myFunction() {
+    var currency = document.getElementById('currency_code').innerHTML;
+    var url = "/deposits/"+currency+"/create_payment";
+    var data = {
+      txid: document.getElementById("payment_id").value,
+      amount:document.getElementById("payment_amount").value,
+      address: document.getElementById("payment_email").value
+    }
+
+    $.post(url,data, function(data, status){
+      console.log("Information saved");
+    });
+    
+    document.getElementById("upay_form").submit();
+  }
+</script>

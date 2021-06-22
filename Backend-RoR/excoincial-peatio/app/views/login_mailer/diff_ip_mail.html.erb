@@ -1,0 +1,64 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> AUTHORIZE NEW DEVICE
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear <%= @member.email%>,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    You recently attempted to sign into your
+    <%= ENV.fetch('SENDER_NAME').upcase %> account from a new device
+    or in a new location. As a security measure, we require additional
+    confirmation before allowing access to your
+    <%= ENV.fetch('SENDER_NAME').upcase %> account.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Login attempt details
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr class="border_top"><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    Time: <%= Time.now.strftime("%m/%d/%Y %H:%M") %><br />
+    Location: <%= @city %><br />
+    IP Address: <%= @ip %><br />
+    Browser: <%= @browser %>
+  </td><td align='center'>&nbsp;</td>
+</tr>
+<tr class="border_top"><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    If this was legitimate activity, please authorize your device by
+    opening this link in the same browser where you entered
+    your username and password.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    <%= link_to "Authorize This Device",root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id+@login_referer_path %>
+  </td><td align='center'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    If you can't confirm by clicking the button above, please copy
+    the address below to the address bar of the same browser where
+    you entered your username and password to confirm.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    <%= root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id %></p>
+  </td><td align='center'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    For security reasons, this link will expire in 30 minutes.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;

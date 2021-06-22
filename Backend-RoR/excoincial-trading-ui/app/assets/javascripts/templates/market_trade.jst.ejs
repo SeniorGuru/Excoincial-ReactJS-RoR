@@ -1,0 +1,20 @@
+<% trend = formatter.trend((typeof type!="undefined") ? type : kind) %>
+
+<tr id="market-trade-<%= tid %>" class="row <%= classes %>">
+  <td class="time text-left col-xs-3"><div>
+    <%= formatter.fulltimeExt((typeof date!="undefined") ? date : at) %>
+  </div></td>
+  <td class="my text-left col-xs-1"><div>
+    <i class="fa fa-star"></i>
+  </div></td>
+  <td class="col-xs-2"><span class="capitalize <%= trend %>"><%= type %></span></td>
+  <td class="price text-center col-xs-2 <%= trend %>"><div>
+    <%= formatter.mask_fixed_price(price) %>
+  </div></td>
+  <td class="volume text-center col-xs-2" title="<%= formatter.fix_bid(price*((typeof amount!="undefined") ? amount : volume)) %>"><div>
+    <%= formatter.mask_fixed_volume((typeof amount!='undefined') ? amount : volume) %>
+  </div></td>
+  <td class="volume text-right col-xs-3" title="<%= formatter.fix_bid(price*((typeof amount!="undefined") ? amount : volume)) %>"><div>
+    <%= formatter.amount(((typeof amount!="undefined") ? amount : volume),price) %>
+  </div></td>
+</tr>

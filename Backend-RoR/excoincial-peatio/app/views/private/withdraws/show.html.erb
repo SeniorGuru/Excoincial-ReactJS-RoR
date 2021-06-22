@@ -1,0 +1,91 @@
+<div class="pagecontent">
+  <div class="container-fluid site-container">
+    <div class="bannerpage mt-20">
+      <section class="">
+        <div class="site-theme-form">
+          <div class="row flex-content">
+            <div class="col-md-4 col-sm-8 banner-border white-bgs signinbox center-content form-bg-banner pad-25 icon-form">
+              <div class="split-box">
+                <a href="/funds">Back</a>
+                <div class="banner-border">
+                  <h2 class="page-header text-uppercase text-center no-icon"> <%= @currency.id %> Withdraw
+                    <hr class="x-line">
+                  </h2>
+                  <ul class="my-form-list">
+                    <li>
+                      Once you have submitted your withdrawal request, we will send you a confirmation email. Please click on the confirmation link sent to your email to authorize your withdrawal request.                      
+                    </li>
+                    <li>
+                      Upon completing a withdrawal action you can track the progress on your <%= link_to "history",account_history_path %> page. 
+                    </li>
+                    <li>Minimum Withdrawal : <%= @currency.min_withdraw_amount %> <%= @currency.id.upcase %></li>
+                  </ul>
+                  <%= form_for @withdraw,  as: :withdraw,  url: withdraw_index_path, remote: true, class: "" do |f| %>
+                    <div class="panel panel-content panel-default panel-border bottom-line">
+                      <div class="panel-body pad-10">
+                        <div class="text-center balance-level">Your Wallet Balance : <span class="g-t h4" id="click_balance"> <%= @account.balance.floor(@currency.precision) %> </span> <span> <%= @currency.id.upcase %> </span></div>
+                        <div class="form-group">
+                          <label class="col-xs-12 control-label">Receive Address</label>
+                          <div class="col-xs-12 inputGroupContainer">
+                            <%= f.text_field :rid, class: "form-control", required: true %>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-xs-12 control-label">Amount To Receive</label>
+                          <div class="col-xs-12 inputGroupContainer">
+                            <%= f.number_field :sum, step: :any, class: "form-control", required: true, min: 0.005, max: @account.balance.floor(@currency.precision) %>
+                          </div>
+                        </div>
+                        <!-- <div class="text-right col-md-12"> Min withdraw amount : <span class="violet-t" id="netfee"> <%#= @currency.min_withdraw_amount %> </span> <span class="violet-t text-uppercase"> <%#= @currency.id %> </span> </div> -->
+                        <div class="text-right col-md-12">Transaction Fee : <span class="violet-t" id="comm">  <%= @currency.withdraw_fee %> </span> <span class="violet-t text-uppercase"> <%= @currency.id %> </span></div>
+<!--                        <div class="text-right col-md-12">Total Charge : <span class="violet-t" id="total"> 0 </span>  <span class="violet-t text-uppercase"> <%#= @currency.id %> </span> </div>-->
+                        <div class="center-btn text-center form-group">
+                          <%= f.submit :withdraw, class: "btn btn-gray site-btn mt-20 text-uppercase nova-font-bold" %>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  <% end %>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="modal custom-cnfrm-modal" id="confirm_withdraw" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-icons">
+          <p class="icon-i">
+            <i class="fa fa-exclamation"></i>
+          </p>
+          <p class="modal-text">
+            We sent a confirmation email to you. Please follow the instructions to confirm this withdrawal request.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    $("#confirm_withdraw").hide();
+  });
+  $('form .balance-level').on('click', function () {
+    $('#withdraw_sum').val($('#click_balance').html().trim())
+  });
+  $("#confirm_withdraw .close").on('click',function(){
+    $("#confirm_withdraw").hide();
+  });
+</script>

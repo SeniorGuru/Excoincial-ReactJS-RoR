@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<body>
+  <div>
+    <% if @profile.nil? %>
+      <p> Hello! </p>
+    <% else %>
+      <p> Hello <%= @profile.full_name %>!</p>
+    <% end %>
+    <p>Your application for KYC verification has been approved and your withdrawal limitation has been lifted.</p>
+    <p>If you have any questions, please contact us at info@excoincial.com</p>
+  </div>
+</body>

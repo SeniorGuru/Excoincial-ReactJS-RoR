@@ -1,0 +1,1 @@
+TradingBot::MostafaBot.new().process()

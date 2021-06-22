@@ -1,0 +1,68 @@
+<div id="market_list_wrapper" class="has-right-dropdown">
+  <div id="market_list">
+    <h3 class="page-header text-uppercase no-icon"><span
+      class="bottom-line">MARKET</span> <span class="search-whl">
+      <form action="#" method="get">
+        <input type="text" placeholder="search currencies" id="market_search"/>
+      </form></span></h3>
+    <ul class="list-inline market-list-selection">
+      <li class=""><a data-toggle="tab" data-name="all">All</a></li>
+      <li class="<%= 'active' if @current_market[:bid_unit] == 'usd' %>"><a data-toggle="tab" data-name="usd">USD</a></li>
+      <li class="<%= 'active' if @current_market[:bid_unit] == 'btc' %>"><a data-toggle="tab" data-name="btc">BTC</a></li>
+      <li class="<%= 'active' if @current_market[:bid_unit] == 'eth' %>"><a data-toggle="tab" data-name="eth">ETH</a></li>
+      <li class="<%= 'active' if @current_market[:bid_unit] == 'afcash' %>"><a data-toggle="tab" data-name="afcash">AFCASH</a></li>
+      <% @data[:market_groups].each do |name| %>
+        <% unless ['usd', 'btc', 'eth', 'afcash'].include? name %>
+        <li class="list-inline-item <%= 'active' if @current_market[:bid_unit] == name %>">
+          <a data-name="<%= name %>" data-toggle="tab"><span><%= name.upcase %></span></a>
+        </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <div class="panel-body table-list-search">
+      <div class="table-responsive table site-table" data-simplebar>
+        <table width="100%" class="table tbg keywords">
+          <thead>
+          <tr>
+            <th class="text-left">PAIR</th>
+            <th class="text-left">PRICE</th>
+            <th class="text-left">EXCHANGE</th>
+            <th class="text-left">VOLUME</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @data.fetch(:markets).each do |market| %>
+            <tr class="markets-toggle" id="market-list-<%= market.fetch(:id) %>" data-quote-unit="<%= market.fetch(:bid_unit) %>" data-base-unit="<%= market.fetch(:ask_unit) %>" data-market="<%= market[:id] %>">
+              <!-- market pair -->
+              <td class="name">
+                <%= link_to market.fetch(:name), '/trading/' + market.fetch(:id) %>
+              </td>
+              <!-- price -->
+              <td class="text-left price">
+                <%= link_to market.fetch(:ticker).fetch(:last).to_d.round(8), '/trading/' + market.fetch(:id) %>
+<!--                <a><%#= market.fetch(:ticker).fetch(:last) %></a>-->
+              </td>
+              <!-- change -->
+              <td class="text-left change" nowrap="nowrap">
+                <a href="/trading/<%= market.fetch(:id) %>">
+                    <span
+                      class="text-up"><i class="fa fa-arrow-up"
+                                         aria-hidden="true"></i></span> +0.00%
+                </a>
+              </td>
+
+              <!-- volume -->
+              <td class="text-left vol">
+                <%= link_to market.fetch(:ticker).fetch(:volume).to_d.round(8), '/trading/' + market.fetch(:id) %>
+                  <%#= market.fetch(:ticker).fetch(:volume) %>
+              </td>
+
+
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

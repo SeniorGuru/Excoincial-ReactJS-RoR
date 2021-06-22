@@ -1,0 +1,102 @@
+<audio preload="preload" id="success-fx">
+  <source src="<%= audio_path('success.mp3') %>" />
+</audio>
+
+<audio preload="preload" id="warning-fx">
+  <source src="<%= audio_path('warning.mp3') %>" />
+</audio>
+
+<%= render partial: 'header' %>
+
+<div class="pagecontent order-base excbase full-size">
+  <div class="flex-cont">
+    <div class="col-md-3 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box">
+        <div class="coin-pairs">
+          <%= render partial: 'market_list' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box">
+        <div class="banner-border">
+          <%= render partial: 'candlestick' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-cont">
+    <div class="col-md-3 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box wallet-section">
+        <h3 class="page-header text-uppercase no-icon"><span
+          class="bottom-line">WALLET</span></h3>
+        <div class="panel panel-content panel-default panel-border">
+          <div class="pt-0">
+            <div class="table-responsive table site-table" data-simplebar>
+      <% if @data[:current_member] %>
+        <%= render partial: 'account_consolidated' %>
+      <% else %>
+        <p class="navbar-text">
+          <%= t('markets.mask.warning').html_safe %>
+        </p>
+      <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box">
+        <div class="place-order-type">
+          <ul>
+            <li class="active" data-name="limit" id="active_limit"><span>Limit</span></li>
+            <li data-name="market" id="active_market"><span>Market</span></li>
+            <li data-name="stop" id="stopLimit"><span>Stop-Limit</span></li>
+          </ul>
+        </div>
+        <div class="split-content order-form">
+          <!--BUY-->
+          <div class="col-md-6 col-sm-12 col-xs-12 spilit-box">
+            <%= render partial: 'bid_entry', locals: { market: @data.fetch(:current_market) } %>
+          </div>
+          <!--SELL-->
+          <div class="col-md-6 col-sm-12 col-xs-12 spilit-box">
+            <%= render partial: 'ask_entry', locals: { market: @data.fetch(:current_market) } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'order_book' %>
+
+  <div class="flex-cont">
+    <div class="col-md-12 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box">
+        <h3 class="page-header text-uppercase no-icon"><span
+          class="bottom-line">Open Orders</span></h3>
+        <div style="padding-top:0px;padding-left:20px;padding-right:20px;">
+          <%= render partial: 'my_orders' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex-cont">
+    <div class="col-md-12 col-sm-12 col-xs-12 stcontf">
+      <div class="inner-box">
+        <h3 class="page-header text-uppercase no-icon"><span
+          class="bottom-line">TRADE HISTORY</span></h3>
+        <div style="padding-top:0px;padding-left:20px;padding-right:20px;">
+          <%= render partial: 'market_trades' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+    <%= render partial: 'trade_footer' %>

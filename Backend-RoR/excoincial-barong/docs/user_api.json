@@ -1,0 +1,1796 @@
+{
+  "info": {
+    "title": "Barong",
+    "description": "API for barong OAuth server ",
+    "contact": {
+      "name": "Oleksandr Papevis CTO of Excoincial Exchange, Head of Support Africunia Bank",
+      "email": "aleksander@africunia.org",
+      "url": "https://excoincial.com"
+    },
+    "license": {
+      "url": "https://github.com/africunia/excoincial-api/blob/master/LICENSE.md"
+    },
+    "version": "1.9.0"
+  },
+  "swagger": "2.0",
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "BearerToken": {
+      "description": "Bearer Token authentication",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "host": "junbesitulo.excoincial.com",
+  "basePath": "/users/api",
+  "tags": [
+    {
+      "name": "accounts",
+      "description": "Operations about accounts"
+    },
+    {
+      "name": "articles",
+      "description": "Operations about articles"
+    },
+    {
+      "name": "profiles",
+      "description": "Operations about profiles"
+    },
+    {
+      "name": "security",
+      "description": "Operations about securities"
+    },
+    {
+      "name": "documents",
+      "description": "Operations about documents"
+    },
+    {
+      "name": "phones",
+      "description": "Operations about phones"
+    },
+    {
+      "name": "sessions",
+      "description": "Operations about sessions"
+    },
+    {
+      "name": "labels",
+      "description": "Operations about labels"
+    },
+    {
+      "name": "api_keys",
+      "description": "Operations about api_keys"
+    }
+  ],
+  "paths": {
+    "/v1/accounts/unlock": {
+      "post": {
+        "description": "Unlocks an account",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "unlock_token",
+            "description": "Token from email",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Unlocks an account"
+          },
+          "400": {
+            "description": "Required params are missing"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsUnlock"
+      }
+    },
+    "/v1/accounts/send_unlock_instructions": {
+      "post": {
+        "description": "Send unlock instructions",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "Account email",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Send unlock instructions"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsSendUnlockInstructions"
+      }
+    },
+    "/v1/accounts/send_confirmation_instructions": {
+      "post": {
+        "description": "Send confirmations instructions",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "Account email",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Send confirmations instructions"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsSendConfirmationInstructions"
+      }
+    },
+    "/v1/accounts/confirm": {
+      "post": {
+        "description": "Confirms an account",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "confirmation_token",
+            "description": "Token from email",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Confirms an account"
+          },
+          "400": {
+            "description": "Required params are missing"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsConfirm"
+      }
+    },
+    "/v1/accounts": {
+      "post": {
+        "description": "Creates new account",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "Account Email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "Account Password",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "recaptcha_response",
+            "description": "Response from Recaptcha widget",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Creates new account"
+          },
+          "400": {
+            "description": "Required params are missing"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1Accounts"
+      }
+    },
+    "/v1/accounts/password": {
+      "put": {
+        "description": "Change account password",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "old_password",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "new_password",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Change account password"
+          },
+          "400": {
+            "description": "Required params are missing"
+          },
+          "401": {
+            "description": "Invalid password or bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "putV1AccountsPassword"
+      }
+    },
+    "/v1/accounts/me": {
+      "get": {
+        "description": "Return information about current resource owner",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return information about current resource owner"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "getV1AccountsMe"
+      }
+    },
+    "/v1/accounts/login_history": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get LoginHistory(s)"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "getV1AccountsLoginHistory"
+      }
+    },
+    "/v1/accounts/update_login_history": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get UpdateLoginHistory(s)"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "getV1AccountsUpdateLoginHistory"
+      }
+    },
+    "/v1/accounts/last_login": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get LastLogin(s)"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "getV1AccountsLastLogin"
+      }
+    },
+    "/v1/accounts/edit_profile": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "get EditProfile(s)"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "getV1AccountsEditProfile"
+      }
+    },
+    "/v1/accounts/update_profile": {
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "created UpdateProfile"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsUpdateProfile"
+      }
+    },
+    "/v1/accounts/update_image": {
+      "post": {
+        "description": "Account related routes",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Account related routes"
+          }
+        },
+        "tags": [
+          "accounts"
+        ],
+        "operationId": "postV1AccountsUpdateImage"
+      }
+    },
+    "/v1/articles": {
+      "get": {
+        "description": "Return all articles List",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all articles List"
+          }
+        },
+        "tags": [
+          "articles"
+        ],
+        "operationId": "getV1Articles"
+      }
+    },
+    "/v1/profiles": {
+      "post": {
+        "description": "Create a profile for current_account",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "first_name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "last_name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "dob",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "address",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "postcode",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "city",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "country",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create a profile for current_account"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "409": {
+            "description": "Profile already exists"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "profiles"
+        ],
+        "operationId": "postV1Profiles"
+      }
+    },
+    "/v1/profiles/me": {
+      "get": {
+        "description": "Return profile of current resource owner",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return profile of current resource owner"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Account has no profile"
+          }
+        },
+        "tags": [
+          "profiles"
+        ],
+        "operationId": "getV1ProfilesMe"
+      }
+    },
+    "/v1/security/verify_api_key": {
+      "post": {
+        "description": "Verify API key",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "uid",
+            "description": "API Key uid",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "account_uid",
+            "description": "Account uid",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "API key is valid"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityVerifyApiKey"
+      }
+    },
+    "/v1/security/reset_password": {
+      "put": {
+        "description": "Sets new account password",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "reset_password_token",
+            "description": "Token from email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "Account password",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sets new account password"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "putV1SecurityResetPassword"
+      },
+      "post": {
+        "description": "Send reset password instructions",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "account email",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Send reset password instructions"
+          },
+          "400": {
+            "description": "Email is missing"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityResetPassword"
+      }
+    },
+    "/v1/security/verify_code": {
+      "post": {
+        "description": "Verify 2FA code",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Verify 2FA code"
+          },
+          "400": {
+            "description": "2FA has not been enabled for this account or code is missing"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityVerifyCode"
+      }
+    },
+    "/v1/security/enable_2fa": {
+      "post": {
+        "description": "Enable 2FA",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Enable 2FA"
+          },
+          "400": {
+            "description": "2FA has been enabled for this account or code is missing"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityEnable2fa"
+      }
+    },
+    "/v1/security/generate_qrcode": {
+      "post": {
+        "description": "Generate qr code for 2FA",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Generate qr code for 2FA"
+          },
+          "400": {
+            "description": "2FA has been enabled for this account"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityGenerateQrcode"
+      }
+    },
+    "/v1/security/renew": {
+      "post": {
+        "description": "Renews JWT if current JWT is valid",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "expires_in",
+            "description": "Expires in time in seconds",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Renews JWT if current JWT is valid"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Invalid expires_in"
+          }
+        },
+        "tags": [
+          "security"
+        ],
+        "operationId": "postV1SecurityRenew"
+      }
+    },
+    "/v1/documents": {
+      "post": {
+        "description": "Upload a new document for current user",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "doc_expire",
+            "description": "Document expiration date",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "doc_type",
+            "description": "Document type",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "doc_number",
+            "description": "Document number",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "upload",
+            "description": "Uploaded file",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Document is uploaded"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "documents"
+        ],
+        "operationId": "postV1Documents"
+      },
+      "get": {
+        "description": "Return current user documents list",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return current user documents list"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          }
+        },
+        "tags": [
+          "documents"
+        ],
+        "operationId": "getV1Documents"
+      }
+    },
+    "/v1/phones/verify": {
+      "post": {
+        "description": "Verify a phone",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone_number",
+            "description": "Phone number with country code",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "verification_code",
+            "description": "Verification code from sms",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Verify a phone"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "phones"
+        ],
+        "operationId": "postV1PhonesVerify"
+      }
+    },
+    "/v1/phones/send_code": {
+      "post": {
+        "description": "Resend activation code",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone_number",
+            "description": "Phone number with country code",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resend activation code"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "phones"
+        ],
+        "operationId": "postV1PhonesSendCode"
+      }
+    },
+    "/v1/phones": {
+      "post": {
+        "description": "Add new phone",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone_number",
+            "description": "Phone number with country code",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Add new phone"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "phones"
+        ],
+        "operationId": "postV1Phones"
+      }
+    },
+    "/v1/sessions/generate_jwt": {
+      "post": {
+        "description": "Validates client jwt and generates peatio session jwt",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "kid",
+            "description": "API Key uid",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "jwt_token",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session is generated"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "JWT is invalid"
+          }
+        },
+        "tags": [
+          "sessions"
+        ],
+        "operationId": "postV1SessionsGenerateJwt"
+      }
+    },
+    "/v1/sessions/jwt": {
+      "post": {
+        "description": "Generates jwt by user session",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Session is generated"
+          },
+          "401": {
+            "description": "Session is invalid"
+          }
+        },
+        "tags": [
+          "sessions"
+        ],
+        "operationId": "postV1SessionsJwt"
+      }
+    },
+    "/v1/sessions": {
+      "post": {
+        "description": "Start a new session",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "application_id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "expires_in",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "otp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "recaptcha_response",
+            "description": "Response from Recaptcha widget",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Start a new session"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "sessions"
+        ],
+        "operationId": "postV1Sessions"
+      }
+    },
+    "/v1/labels/{key}": {
+      "delete": {
+        "description": "Delete a label  with 'public' scope.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "description": "Label key.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Succefully deleted"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "labels"
+        ],
+        "operationId": "deleteV1LabelsKey"
+      },
+      "patch": {
+        "description": "Update a label with 'public' scope.",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "description": "Label key.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "value",
+            "description": "Label value.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update a label with 'public' scope."
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "labels"
+        ],
+        "operationId": "patchV1LabelsKey"
+      },
+      "get": {
+        "description": "Return a label by key.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "description": "Label key.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return a label by key."
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "labels"
+        ],
+        "operationId": "getV1LabelsKey"
+      }
+    },
+    "/v1/labels": {
+      "post": {
+        "description": "Create a label with 'public' scope.",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "key",
+            "description": "Label key.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "value",
+            "description": "Label value.",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create a label with 'public' scope."
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "labels"
+        ],
+        "operationId": "postV1Labels"
+      },
+      "get": {
+        "description": "List all labels for current account.",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all labels for current account."
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          }
+        },
+        "tags": [
+          "labels"
+        ],
+        "operationId": "getV1Labels"
+      }
+    },
+    "/v1/api_keys/{uid}": {
+      "delete": {
+        "description": "Delete an api key",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "totp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Succefully deleted"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "api_keys"
+        ],
+        "operationId": "deleteV1ApiKeysUid"
+      },
+      "patch": {
+        "description": "Updates an api key",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "public_key",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "scopes",
+            "description": "comma separated scopes",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "expires_in",
+            "description": "expires_in duration in seconds",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "state",
+            "description": "State of API Key. \"active\" state means key is active and can be used for auth",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "totp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updates an api key"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "api_keys"
+        ],
+        "operationId": "patchV1ApiKeysUid"
+      },
+      "get": {
+        "description": "Return an api key by uid",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "totp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return an api key by uid"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "404": {
+            "description": "Record is not found"
+          }
+        },
+        "tags": [
+          "api_keys"
+        ],
+        "operationId": "getV1ApiKeysUid"
+      }
+    },
+    "/v1/api_keys": {
+      "post": {
+        "description": "Create an api key",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "public_key",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "scopes",
+            "description": "comma separated scopes",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "expires_in",
+            "description": "expires_in duration in seconds",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "formData",
+            "name": "totp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Create an api key"
+          },
+          "400": {
+            "description": "Required params are empty"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          },
+          "422": {
+            "description": "Validation errors"
+          }
+        },
+        "tags": [
+          "api_keys"
+        ],
+        "operationId": "postV1ApiKeys"
+      },
+      "get": {
+        "description": "List all api keys for current account.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "totp_code",
+            "description": "Code from Google Authenticator",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "BearerToken": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List all api keys for current account."
+          },
+          "400": {
+            "description": "Require 2FA and totp code"
+          },
+          "401": {
+            "description": "Invalid bearer token"
+          }
+        },
+        "tags": [
+          "api_keys"
+        ],
+        "operationId": "getV1ApiKeys"
+      }
+    }
+  },
+  "definitions": {
+    "Label": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "Label key. [a-z0-9_-]+ should be used. Min - 3, max - 255 characters."
+        },
+        "value": {
+          "type": "string",
+          "description": "Label value. [A-Za-z0-9_-] should be used. Min - 3, max - 255 characters."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Label scope: 'public' or 'private'"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "APIKey": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "public_key": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "array",
+          "description": "array of scopes"
+        },
+        "expires_in": {
+          "type": "string",
+          "description": "expires_in duration in seconds. Min 30 seconds, Max 86400 seconds"
+        },
+        "state": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountWithProfile": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "otp_enabled": {
+          "type": "boolean",
+          "description": "is 2FA enabled for account"
+        },
+        "state": {
+          "type": "string"
+        },
+        "profile": {
+          "$ref": "#/definitions/Profile"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string",
+          "format": "date",
+          "description": "Birthday date"
+        },
+        "address": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Profile additional fields"
+        }
+      }
+    }
+  }
+}

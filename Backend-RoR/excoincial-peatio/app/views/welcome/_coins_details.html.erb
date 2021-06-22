@@ -1,0 +1,17 @@
+<div class="text-center">
+  <img src="<%= @currencies_data['hero_image']['url']%>" width="20%"/>
+</div>
+<h1 class="text-center"><%= @currencies_data['title']%> (<%= @currencies_data['sub_title']%>) </h1>
+<small class="text-center d-block pb-30"><%=@currencies_data['created_at']%></small>
+
+<div class="content-details-data">
+  <!-- <h3>1.Project Description</h3> -->
+  <p>Project Name: <%= @currencies_data['sub_title']%></p>
+  <p>Token Name: <%= @currencies_data['title']%></p>
+</div>
+
+<div class="content-details-data">
+  <!-- <h3>2.Project Introduction</h3> -->
+
+  <p><%= @currencies_data['content'].gsub("\r\n","<br>").html_safe%></p>
+</div>

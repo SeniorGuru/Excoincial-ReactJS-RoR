@@ -1,0 +1,31 @@
+test: &default
+
+  # Credentials for REST APIs
+  client_id: AUQFKaADF5EjS3tyaaxt24DbVfVp_C1tIJJc8mmKUTtW_h1OO0coq-PQhpjEjQP5MS8CnIM6Ri3SrUov
+  client_secret: ECpbKrYX5hEKNSZ-RbhxqWmK9zyMrFl3CSXaU6LB-oa2E98SZ-piWUldjKbiXArUohRpzsK9fl6cve2D
+
+  # Mode can be 'live' or 'sandbox'
+  mode: sandbox
+
+  # Credentials for Classic APIs
+  app_id: APP-80W284485P519543T
+  username: info-facilitator_api1.excoincial.com
+  password: F8XV88ET7HCUA68S
+  signature: AmO8zxn0PhP4YWd1jSo80GH7W1clAy-h3OnMraOn7xWBgLGv4BBUaXC3
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+  sandbox_email_address: info-facilitator@excoincial.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  client_id: AYD2VH3I029sNyWO8EOLhWbLrqlZpukw64ixP61CwY8H6HEW_U6H7ypiRv7teQ63f0HioAbAzh0w1bw2
+  client_secret: EJKcmlp7Gz8FsRMC1enX2erBqSqry7ehkrZAU-M6g_DYPyhyL7Hm_bd_rcrqiMiV1IH2fqPEun9BLsdq
+  mode: live

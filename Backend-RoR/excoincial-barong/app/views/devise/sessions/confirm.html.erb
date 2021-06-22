@@ -1,0 +1,32 @@
+<h3 class="text-center t-pink nova-font-bold pb-20 text-uppercase">Google OTP</h3>
+
+<%= form_for(resource, as: resource_name, url: account_session_path, method: :post, class: "mui-form") do |f| %>
+  <%#= devise_error_messages! %>
+  <%= f.hidden_field :email %>
+
+  <% if @otp_enabled %>
+    <div class="mui-textfield">
+        <%= label_tag :otp, 'Google Two Factor 6 Digit Code ' %>
+        <%= text_field_tag :otp, '', autocomplete: 'off', class: '', required: true, maxlength: 6, size: 6, pattern: '\d{6}', placeholder: 'XXXXXX' %>
+    </div>
+  <% end %>
+
+  <%# if devise_mapping.rememberable? -%>
+<!--    <div class="form-group">-->
+<!--      <div class="row">-->
+        <%#= f.label :remember_me do %>
+          <%#= f.check_box :remember_me, class: 'checkbox' %>
+<!--          Remember me-->
+        <%# end %>
+<!--      </div>-->
+<!--    </div>-->
+  <%# end -%>
+
+  <div align="center">
+    <div class="btntext">
+      <%= f.submit 'Submit', class: 'btn site-btn btn-gray mt-20 text-uppercase fnt-bold' %>
+    </div>
+  </div>
+
+  <%#= link_to 'Back', new_account_session_path, class: 'btn btn-secondary text-white' %>
+<% end %>

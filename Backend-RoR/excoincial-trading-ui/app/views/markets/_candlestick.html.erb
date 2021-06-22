@@ -1,0 +1,39 @@
+<h3 class="page-header text-uppercase no-icon">
+  <ul class="nav panel-tabs">
+    <li class="active"><a href="#chart"
+                          data-toggle="tab">PRICE CHART</a>
+    </li>
+    <li ><a href="#depth" data-toggle="tab">MARKET DEPTH</a></li>
+
+  </ul>
+</h3>
+
+<div class="panel-body">
+  <div class="tab-content">
+    <div class="tab-pane active" id="chart">
+      <div id="candlestick" class="tradingview-widget-container">
+        <div id="tv_chart_container" class="tradechartlist" style="height:412px;">
+          <%= render partial: 'range_switch' %>
+          <%= render partial: 'indicator_switch' %>
+          <div id="candlestick_chart" style="height: 100%;"></div>
+          <div class="mask">
+            <table>
+              <tr>
+                <td class="text-center">
+                  <i class="fa fa-refresh fa-spin fa-1x"></i>
+                  <span> Loading ...</span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="tab-pane" id="depth">
+      <%= render partial: 'depths' %>
+    </div>
+  </div>
+</div>
+
+

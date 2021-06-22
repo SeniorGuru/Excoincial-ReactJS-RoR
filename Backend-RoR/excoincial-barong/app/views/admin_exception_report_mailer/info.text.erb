@@ -1,0 +1,19 @@
+<%= ENV.fetch('SENDER_NAME').upcase %> ADMIN EVENT INFO REPORT
+
+Hi admin,
+
+Reporting notifying about an event referred to an <%= ENV.fetch('SENDER_NAME').upcase %>
+<%= (@account.present? ? (@account.profile.first_name rescue @account.email) : 'unknown')
+ %> account.
+
+If you are NEITHER an admin of <%= ENV.fetch('SENDER_NAME').upcase %>
+NOR are you employed by the company itself or subsidiary/sibling companies
+then you received this mail by mistake. Please report this accident to our
+admin or support email immediately and don't share the contents of this mail
+with anybody except us. This mail may contain proprietary information.
+
+The original report message reads as follows:
+
+<%= @data.to_s.html_safe %>
+
+End of report

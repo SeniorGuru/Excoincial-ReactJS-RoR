@@ -1,0 +1,49 @@
+    <%= ENV.fetch('SENDER_NAME').upcase %> AUTHORIZE NEW IP
+  </td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Dear <%= @member.email%>,
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    A login attempt has been made to your <%= ENV.fetch('SENDER_NAME').upcase %> account <%=@member.email%>.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Login attempt details
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr class="border_top"><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    IP Address: <%= @ip %><br />
+    Location: <%= @city %><br />
+    Web browser: <%= @browser %>
+  </td><td align='center'>&nbsp;</td>
+</tr>
+<tr class="border_top"><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    * To verify your login attempt, open this link in the same browser where you entered your username and password.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    <%= root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id+@login_referer_path %>
+  </td><td align='center'>&nbsp;</td>
+</tr>
+<tr><td colspan='3' align='center' height='1' style='padding:0px;'></td></tr>
+<tr><td align='left' style='padding-top:0px;'>&nbsp;</td>
+  <td style='text-align:left;font-size:15px;color:#000;padding-top:0px;'>
+    Or click this link below if you are using the webmail-client opened in the same browser where you entered your username and password.
+  </td><td align='left' style='padding-top:0px;'>&nbsp;</td>
+</tr>
+<tr><td align='center'>&nbsp;</td>
+  <td align='center'>
+    <%= link_to 'CLICK HERE TO VERIFY BROWSER', root_url+"member/"+@member.sn+"/approve_login?sid="+@session_id+@login_referer_path %>
+  </td><td align='center'>&nbsp;

@@ -1,0 +1,107 @@
+
+<% my_deposit_address = @deposit_address.address %>
+<div class="pagecontent">
+  <div class="container-fluid site-container">
+    <div class="bannerpage mt-20">
+      <section class="">
+        <div class="site-theme-form">
+          <div class="row flex-content">
+            <div class="col-md-4 col-sm-8 banner-border white-bgs signinbox center-content form-bg-banner pad-25 icon-form">
+              <div class="split-box">
+                <a href="/funds">Back</a>
+                <div class="banner-border">
+                  <h2 class="page-header text-uppercase text-center no-icon"> <%= @currency.id %> deposit
+                    <hr class="x-line">
+                  </h2>
+
+                  <ul class="my-form-list">
+                    <li>Send only <%= @currency.id %> to this deposit address. Sending any other coin or token to this address may result in the loss of your deposit.</li>
+                    <li>Coins will be deposited immediately after <%= @currency.blockchain.min_confirmations rescue "" %> network confirmations.</li>
+                    <li>After making a deposit, you can track its progress on the <%= link_to "history",account_history_path %> page.</li>
+                    <li>Minimum Deposit : <%= @currency.min_deposit_amount %> <%= @currency.id.upcase %></li>
+                  </ul>
+                  <form>
+                    <div class="panel panel-content panel-default panel-border bottom-line">
+                      <div class="panel-body pad-10">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group  has-feedback">
+                              <label class="col-xs-12 control-label"> <%= @currency.id.upcase %> Address</label>
+                              <div class="col-xs-12 inputGroupContainer">
+                                <input required="" class="form-control" type="text" value="<%= my_deposit_address %>" id="coinaddress" readonly="">
+                                <%- if my_deposit_address %>
+                                  <button onclick="myCopyFunc()" class="copy-btn ctexty" id="myTooltip">Copy</button>
+                                <% else %>
+                                  <button class="copy-btn ctexty" id="myTooltip" onclick="location.reload(true)"><strong class="text-warning">Generate New Address </strong></button>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group  has-feedback text-center">
+                              <div id="qr_code">
+                                <img src="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=bitcoin:<%= my_deposit_address %>"><br><a href="https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=bitcoin:<%= my_deposit_address %>" download="" class="btncpy title-white text-uppercase tbtn"><i class="fa fa-download"></i> download</a>
+
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- <div class="col-md-12">
+                            <div class="text-right col-md-12"> Minimum Deposit : <span class="violet-t" id="netfee"> <%#= @currency.min_deposit_amount %> </span> <span class="violet-t text-uppercase"> <%#= @currency.id %> </span> </div>
+                          </div> -->
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+    function myCopyFunc() {
+        var copyText = document.getElementById("coinaddress");
+        copyText.select();
+        document.execCommand("Copy");
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "<strong class='text-danger'>Copied!</strong>";
+    }
+
+</script>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    $(window).load(function(){
+      $.ajax({
+        type: "post",
+        url: "<%= gen_address_deposit_index_path %>"
+      })
+    });
+  </script>
+<% end %>
+
+<% content_for :header do %>
+  <div class="fixed-menu">
+    <div class="inner-header">
+      <%= render 'shared/funds_menu' %>
+    </div>
+  </div>
+
+<% end %>
+
+<% content_for :setmode do %>
+  <% if session[:daymode] == 'daymode' %>
+    <li class="day-mode" role="presentation"><a href="/setmode/nightmode"><i class="fa fa-moon-o modeicon" aria-hidden="true"></i></a></li>
+  <% else %>
+    <li class="night-mode" role="presentation"><a href="/setmode/daymode"><i class="fa fa-sun-o modeicon" aria-hidden="true"></i></a></li>
+  <% end %>
+<% end %>

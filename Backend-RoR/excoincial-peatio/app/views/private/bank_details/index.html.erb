@@ -1,0 +1,59 @@
+<div class="pagecontent">
+  <div class="container site-container">
+    <div class="row table-row">
+      <div class="col-md-12 content-bx">
+        <div class="table-hader-flex">
+          <h2>Bank Details</h2>
+          <%= link_to "Add Bank Details",new_bank_detail_path,class: "btn btn-primary"%>
+        </div>
+        <div class="table-responsive data-table-bx table-bank-details">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th nowrap="">Date&Time</th>
+                <th nowrap="">Bank Name</th>
+                <th nowrap="">Account No</th>
+                <th nowrap="">Account Name</th>
+                <th nowrap="">Swift Code</th>
+                <th nowrap="">IBAN</th>
+                <th nowrap="">Bank Branch</th>
+                <th nowrap="">Bank Branch Code</th>
+                <th nowrap="">Bank Address</th>
+                <th nowrap="">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @bank_details.present? %>
+                <% @bank_details.each do |bank|%>
+                  <tr>
+                    <td><%= bank.created_at.strftime("%Y-%m-%d")%></td>
+                    <td><%= bank.bank_name%></td>
+                    <td><%= bank.account_no%></td>
+                    <td><%= bank.account_name%></td>
+                    <td><%= bank.swift_code%></td>
+                    <td><%= bank.iban %></td>
+                    <td><%= bank.bank_branch%></td>
+                    <td><%= bank.bank_branch_code%></td>
+                    <td><%= bank.bank_address%></td>
+                    <td>
+                      <%= link_to edit_bank_detail_path(bank.id) do %>
+                        <i class="fa fa-pencil"></i>
+                      <% end %>
+                      <%= link_to bank_detail_path(bank.id), method: :delete, data: { disable_with: false } do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr>
+                  <td colspan="10"><h3>Yet No Bank Details Added!</h3></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

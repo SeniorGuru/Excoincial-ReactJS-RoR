@@ -1,0 +1,50 @@
+<div id="account_consolidated">
+  <div class="text-right open">
+    <table width="100%" class="table tbg keywords">
+      <thead>
+        <tr>
+          <th class="text-right">Assets</th>
+          <th class="text-right">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @data.fetch(:my_accounts).each do |account| %>
+          <% market = @data.fetch(:current_market) %>
+          <% ccy = account.fetch(:currency) %>
+          <% next unless [ market[:bid_unit], market[:ask_unit] ].include? ccy.fetch(:code) %>
+          <tr class="<%= ccy.fetch(:code) %> <%= [market.fetch(:ask_unit), market.fetch(:bid_unit)].include?(ccy[:code]) ? '' : 'hide' %>">
+            <td class="account-symbol col-xs-6 text-center">
+              <span class="currency-logo"><img class="funds-currency-icon" src="<%= ccy.fetch(:icon_url) %>" style="height: 30px; margin-right: 12px;"/></span>
+              <span><%= ccy[:code].upcase %></span>
+            </td>
+            <td class="account-balance col-xs-18 text-right">
+              <span><%= t('.amount') %>&emsp;</span><span class="amount" data-title="<%= t('.amount') %>"><%= account.fetch(:amount) %></span>
+              <br>
+              <span><%= t('.locked') %>&emsp;</span><span class="locked" data-title="<%= t('.locked') %>"><%= account.fetch(:locked) %></span>
+            </td>
+          </tr>
+          <tr>
+            <td class="account-symbol col-xs-24 text-center" colspan=2>
+              <div class="flex-btn col-md-12 wallet-btn">
+                <a href="/deposits/<%= ccy.fetch(:code) %>" class="btn green-btn text-uppercase"><i
+                  class="fa fa-arrow-down" aria-hidden="true"></i> DEPOSIT
+                </a>
+                <a href="/withdraws/<%= ccy.fetch(:code) %>" class="btn green-btn text-uppercase"><i
+                  class="fa fa-arrow-up" aria-hidden="true"></i> WITHDRAW
+                </a>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+        <tr class="">
+          <td class="account-symbol col-xs-6 text-center">
+            <%= t('.title') %>
+          </td>
+          <td class="account-balance col-xs-18 text-right">
+            <span id="total_assets" data-title="<%= t('.title') %>"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

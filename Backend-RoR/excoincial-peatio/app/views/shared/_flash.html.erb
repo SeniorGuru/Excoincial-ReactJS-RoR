@@ -1,0 +1,40 @@
+<div class="flash-message alert-msg">
+  <% if flash[:notice] %>
+    <div class="alert alert-dismissable alert-custom-success alert-success">
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true"><i class="icon fa fa-times"></i></button>
+
+      <h3 class="h5 mb-0">
+        <span><%= flash[:notice] %></span>
+      </h3>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="alert alert-dismissable alert-custom-danger alert-danger">
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true"> <i class="icon fa fa-times"></i></button>
+
+      <h3 class="h5 mb-0">
+        <span><%= flash[:alert] %></span>
+      </h3>
+    </div>
+  <% end %>
+
+  <% if flash[:info] %>
+    <div class="alert alert-dismissable alert-custom-info alert-info">
+      <button class="close" type="button" data-dismiss="alert" aria-hidden="true"> <i class="icon fa fa-times"></i></button>
+      <!-- <i class="icon fa fa-info"></i> -->
+      <h3 class="h5 mb-0">
+        <span><%= flash[:info] %></span>
+      </h3>
+    </div>
+  <% end %>
+
+  <%= render 'cookies_eu/consent_banner', link: '/cookies_eu' %>
+</div>
+
+<script type="text/javascript">
+  window.onload = function(e){
+      $(".alert").fadeOut(10000);
+    }
+</script>
+

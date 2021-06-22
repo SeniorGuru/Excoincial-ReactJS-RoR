@@ -1,0 +1,15 @@
+<% if cookies && cookies['cookie_eu_consented'] != 'true' %>
+  <div class="cookies-eu js-cookies-eu alert-info custom-alert-box alert-bg">
+    <span class="cookies-eu-content-holder">
+        <p><%= t('cookies_eu.cookies_text') %></p>
+    <% if defined?(link).present? %>
+      <a href="<%= link %>" class="cookies-eu-link" target="<%= defined?(target).present? ? target : '' %>"> <%= t('cookies_eu.learn_more') %> </a>
+    <% end %>
+    </span>
+    <span class="cookies-eu-button-holder">
+    <button class="cookies-eu-ok js-cookies-eu-ok close" type="button" aria-hidden="true" style="white-space: nowrap;">
+      <%= t('cookies_eu.ok') %>
+    </button>
+    </span>
+  </div>
+<% end %>

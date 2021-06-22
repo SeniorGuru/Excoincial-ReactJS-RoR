@@ -1,0 +1,496 @@
+<!--<script src="/js/web3.min.js "></script>-->
+<!--<script src="/js/ethereumjs-tx-1.3.3.min.js "></script>-->
+<!--<script src="/js/slim-load.js "></script>-->
+
+<footer>
+  <section class="light-gray-bg" style="padding: 10px 0px;">
+    <div class="container-fluid">
+
+      <div class="col-md-12 col-sm-12 col-xs-12 fbg">
+
+        <ul class="trade-foot foot-list">
+          <li><a href="/login_supportfooter">Support</a></li>
+          <!--           <li><a href="/#faq">Faq</a></li>
+           -->      <li><a href="/blog">blog</a></li>
+          <li><a href="/login_terms_cond">Terms and conditions</a></li>
+          <li><a href="/login_privacy">Privacy Policy</a></li>
+          <li><a href="/swagger?url=/api/v2/swagger" target="_blank">API</a></li>
+          <li><a href="/coins-info">Coins Info</a></li>
+          <!-- <li><a href="/symbol_detail/show/btc">Symbol Details</a></li> -->
+          <li><a href="/images/Excoincial-Whitepaper.pdf" target="_blank">Whitepaper</a></li>
+        </ul>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 fbg text-center">
+
+        <ul class="trade-foot foot-list">
+          <li>© 2018 - 2019 EXCOINCIAL. All rights reserved</li>
+        </ul>
+
+      </div>
+      <div class="col-md-3 col-sm-4 col-xs-12">
+        <button class="chat-box"></button>
+      </div>
+    </div>
+  </section>
+</footer>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<!--<script src="/js/bootstrap.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/simplebar/2.6.1/simplebar.js"></script>
+<script type="text/javascript" src="/js/endlessRiver.js"></script>
+<script src="/js/css3-animate-it.js"></script>
+<script src="/js/mui-script.js"></script>
+
+<script src="/js/dataTable.js" ></script>
+<script src="/js/intlTelInput.js"></script>
+<script>
+
+    $("ul.country-list").click(function(){
+        var int = $('ul.country-list').find('li.active').attr('data-dial-code');
+        $("#countrycode").val(int);
+        $(".phone_text").text('+'+int);
+    });
+
+</script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>-->
+<!--<script src="/js/jquery.slimscroll.js"></script>-->
+<script src="/js/particles.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#myUl").endlessRiver();
+    });
+
+</script>
+<script type="text/javascript">
+    $(".loader").fadeOut("slow");
+</script>
+<script>
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        //>=, not <=
+
+        if (scroll >= 600) {
+            //clearHeader, not clearheader - caps H
+            $(".headbg").addClass("darkHeader");
+        }
+
+        else
+        {
+            $(".headbg").removeClass("darkHeader");
+        }
+    }); //missing );
+</script>
+<!--new-script-->
+<script>
+    $('[data-toggle=datepicker1]').each(function() {
+        var target = $(this).data('target-name');
+        var t = $('input[name=' + target + ']');
+        t.datepicker({
+            format: 'yyyy-mm-dd',
+            endDate: '-18y',
+            autoclose: true
+        });
+        $(this).on("click", function() {
+            t.datepicker("show");
+        });
+    });
+
+    $('[data-toggle=datepicker2]').each(function() {
+        var target = $(this).data('target-name');
+        var t = $('input[name=' + target + ']');
+        t.datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '+1d',
+            autoclose: true
+        });
+        $(this).on("click", function() {
+            t.datepicker("show");
+        });
+    });
+
+
+    $('[data-toggle=datepicker3]').each(function() {
+        var target = $(this).data('target-name');
+        var t = $('input[name=' + target + ']');
+        t.datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true
+        });
+        $(this).on("click", function() {
+            t.datepicker("show");
+        });
+    });
+
+
+</script>
+
+<script>
+    /**search-tab**/
+    $(document).ready(function(){
+
+        $(".add").click(function() {
+        });
+
+        $("#hide").click(function(){
+            $(".search-tab").hide(300);
+            $("#hide").addClass("none")
+            $("#show").removeClass("none")
+            $(".search-tab").removeClass("ss")
+        });
+        $("#show").click(function(){
+            $(".search-tab").show(300);
+            $("#show").addClass("none")
+            $("#hide").removeClass("none")
+            $(".search-tab").addClass("ss")
+        });
+
+        $(".dropdown").hover(
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+
+    });
+</script>
+<script>
+    $(document).ready(function() {
+
+        $('.number').keypress(function(){
+            this.value = this.value.replace(/(\.[\d]{8})./g, '$1');
+        });
+
+        $('.navbar a.dropdown-toggle').on('click', function(e) {
+            var $el = $(this);
+            var $parent = $(this).offsetParent(".dropdown-menu");
+            $(this).parent("li").toggleClass('open');
+
+            if(!$parent.parent().hasClass('nav')) {
+                $el.next().css({"top": $el[0].offsetTop, "left": $parent.outerWidth() - 4});
+            }
+
+            $('.nav li.open').not($(this).parents("li")).removeClass("open");
+
+            return false;
+        });
+    });
+
+
+    $(document).ready(function(){
+        $(".coin-dropdown .dropdown").hover(
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideDown("fast");
+                $(this).toggleClass('open');
+            },
+            function() {
+                $('.dropdown-menu', this).not('.in .dropdown-menu').stop( true, true ).slideUp("fast");
+                $(this).toggleClass('open');
+            }
+        );
+    });
+</script>
+
+<script>
+
+    function AvoidSpace(event) {
+        var k = event ? event.which : window.event.keyCode;
+        if (k == 32) return false;
+    }
+
+    function readURL1(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#doc1').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-upload1").change(function() {
+        $("#file-name1").text(this.files[0].name);
+        readURL1(this);
+    });
+</script>
+<script>
+    function readURL2(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#doc2').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-upload2").change(function() {
+        $("#file-name2").text(this.files[0].name);
+        readURL2(this);
+    });
+</script>
+<script>
+    function readURL3(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#doc3').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-upload3").change(function() {
+        $("#file-name3").text(this.files[0].name);
+        readURL3(this);
+    });
+</script>
+
+<!--search-->
+<script>
+    $(document).ready(function() {
+        var activeSystemClass = $('.list-group-item.active');
+
+        //something is entered in search form
+        $('#system-search').keyup( function() {
+            var that = this;
+            // affect all table rows on in systems table
+            var tableBody = $('.table-list-search tbody');
+            var tableRowsClass = $('.table-list-search tbody tr');
+            $('.search-sf').remove();
+            tableRowsClass.each( function(i, val) {
+
+                //Lower text for case insensitive
+                var rowText = $(val).text().toLowerCase();
+                var inputText = $(that).val().toLowerCase();
+                if(inputText != '')
+                {
+                    $('.search-query-sf').remove();
+                    // tableBody.prepend('<tr class="search-query-sf"><td colspan="6"><strong>Searching for: "' + $(that).val()+ '"</strong></td></tr>');
+                }
+                else
+                {
+                    $('.search-query-sf').remove();
+                }
+
+                if( rowText.indexOf( inputText ) == -1 )
+                {
+                    //hide rows
+                    tableRowsClass.eq(i).hide();
+
+                }
+                else
+                {
+                    $('.search-sf').remove();
+                    tableRowsClass.eq(i).show();
+                }
+            });
+            //all tr elements are hidden
+            if(tableRowsClass.children(':visible').length == 0)
+            {
+                tableBody.append('<tr class="search-sf"><td class="text-muted" colspan="6">No entries found.</td></tr>');
+            }
+        });
+    });
+</script>
+<script>
+
+    /*$(document).ready(function(){
+        $("#hidef").click(function(){
+           $("#hidef").addClass("none")
+           $("#showf").removeClass("none")
+        $("body").removeClass("daymode")
+        });
+        $("#showf").click(function(){
+            $("#showf").addClass("none")
+        $("body").addClass("daymode")
+            $("#hidef").removeClass("none")
+        });
+    });*/
+</script>
+
+<script>
+    $(".allownumericwithdecimal").on("keypress keyup blur",function (event) {
+        $(this).val($(this).val().replace(/[^0-9\.]/g,''));
+        if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#accept-btn").click(function(){
+
+            $('.acceptCookieNoticeText').hide();
+
+        });
+    });
+
+
+    function downloadCSV(csv, filename) {
+        var csvFile;
+        var downloadLink;
+
+        // CSV file
+        csvFile = new Blob([csv], {type: "text/csv"});
+
+        // Download link
+        downloadLink = document.createElement("a");
+
+        // File name
+        downloadLink.download = filename;
+
+        // Create a link to the file
+        downloadLink.href = window.URL.createObjectURL(csvFile);
+
+        // Hide download link
+        downloadLink.style.display = "none";
+
+        // Add the link to DOM
+        document.body.appendChild(downloadLink);
+
+        // Click download link
+        downloadLink.click();
+    }
+
+    function exportTableToCSV(filename) {
+        var csv = [];
+        var rows = document.querySelectorAll(".downloaddatas tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = [], cols = rows[i].querySelectorAll("td, th");
+
+            for (var j = 0; j < cols.length; j++)
+                row.push(cols[j].innerText);
+
+            csv.push(row.join(","));
+        }
+
+        // Download CSV file
+        downloadCSV(csv.join("\n"), filename);
+    }
+
+
+</script>
+
+
+<script>
+    $('#password').on('keypress keyup', function(){
+        if (event.keyCode == 32) return false;
+        var password = $('#password');
+        var val = password.val();
+        val = val.replace(/\s/, '');
+        password.val(val);
+        var password_result = $('#password_result');
+        var strenth = 0;
+
+        if(val.match(/[a-z]/)){
+            strenth++;
+        }
+        if(val.match(/[A-Z]/)){
+            strenth++;
+        }
+        if(val.match(/[0-9]/)){
+            strenth++;
+        }
+        if(val.match(/\W/) ){
+            strenth++;
+        }
+        switch(strenth){
+            case 4:
+                password_result.html('Strong');
+                password_result.css({ "color" : "#3DA904" });
+                password.css({ "border-bottom-color":"#3DA904", });
+                break;
+            case 3:
+                password_result.html('Good');
+                password_result.css(
+                    {
+                        "color" : "#FF9C33"
+                    }
+                );
+                password.css(
+                    {
+                        "border-bottom-color":"#FF9C33",
+                    }
+                );
+                break;
+            case 2:
+                password_result.html('Weak');
+                password_result.css(
+                    {
+                        "color" : "#FA0606"
+                    }
+                );
+                password.css(
+                    {
+                        "border-bottom-color":"#FA0606",
+                    }
+                );
+                break;
+            case 1:
+                password_result.html('Weak');
+                password_result.css(
+                    {
+                        "color" : "#FA0606"
+                    }
+                );
+                password.css(
+                    {
+                        "border-bottom-color":"#FA0606",
+                    }
+                );
+                break;
+            case 0:
+                password.css(
+                    {
+                        "border-bottom-color":"#FA0606",
+                    }
+                );
+        }
+    });
+
+    $('#password-confirm').on('keypress keyup', function(){
+        if (event.keyCode == 32) return false;
+        var password = $('#password');
+        var val = password.val();
+        var password_confirm = $('#password-confirm');
+        var password_match = $('#password_match');
+        var repassword = password_confirm.val();
+        repassword = repassword.replace(/\s/, '');
+        password_confirm.val(repassword);
+
+
+
+        if(repassword == val){
+            password_confirm.css(
+                {
+                    "border-bottom-color":"#3DA904",
+                }
+            );
+            password_match.css(
+                {
+                    "color":"#3DA904"
+                }
+            );
+            $('#password_match').html('Password Match');
+        } else {
+            password_confirm.css(
+                {
+                    "border-bottom-color":"#FA0606",
+                }
+            );
+            password_match.css(
+                {
+                    "color":"#FA0606"
+                }
+            );
+            $('#password_match').html('Password Doesn\'t Match</b>');
+        }
+
+    });
+</script>

@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<body>
+  <div>
+    <% if @profile.nil? %>
+      <p> Hello! </p>
+    <% else %>
+      <p> Hello, <%= @profile.full_name %>!</p>
+    <% end %>
+    <p>The document(s) you submitted for KYC verification was rejected by our Compliance Department. Please login and upload legible and acceptable new Identity Document(s) or contact Admin to verify the precise reason for the disapproval.</p>
+    <p>If this activity was not initiated by you, please contact us forthwith at info@excoincial.com.</p>
+  </div>
+</body>

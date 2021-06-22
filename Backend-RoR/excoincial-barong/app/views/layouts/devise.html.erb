@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Excoincial</title>
+  <%= csrf_meta_tags %>
+
+  <link href="/favicon.ico" rel="shortcut icon" />
+
+  <%#= stylesheet_link_tag    'web', media: 'all' %>
+  <%#= domain_stylesheet_tag(domain_asset :stylesheet) %>
+  <%#= javascript_include_tag 'web' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%#= domain_favicon_tag %>
+  <%= render 'shared/meta' %>
+</head>
+<body data-spy="scroll">
+  <% unless alert.blank? %>
+    <span class="alert alert-danger mb-0 alert-msg">
+      <i class="fa fa-times cross-btn"></i> <h3><%= alert %></h3>
+    </span>
+  <% end %>
+  <% unless devise_error_messages!.blank? %>
+    <span class="alert alert-danger mb-0 alert-msg">
+      <i class="fa fa-times cross-btn"></i> <h3><%= devise_error_messages! %></h3>
+    </span>
+  <% end %>
+  <% unless notice.blank? %>
+    <span class="alert alert-success mb-0 alert-msg">
+      <i class="fa fa-times cross-btn"></i> <h3><%= notice %></h3>
+    </span>
+  <% end %>
+
+  <div class="loader"></div>
+  <%#= domain_html_tag(domain_asset :header) %>
+
+  <%= render 'shared/main_header' %>
+
+  <article>
+    <section class="gray-bg inner-banner-bg">
+      <div class="container">
+        <div class="col-md-12">
+          <div class="col-md-5 content-center signup-box login-box">
+            <%= yield %>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </article>
+
+
+
+  <%= render 'shared/footer' %>
+  <%#= domain_html_tag(domain_asset :footer) %>
+
+
+  <style type="text/css">
+
+    .alert-msg {
+      display: block;
+      position: absolute;
+      z-index: 9999;
+      width: 100%;
+      max-width: 445px;
+      right: 10px;
+      top: 65px;
+    }
+    .alert-msg .fa{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+    .alert-msg, h3 {
+      font-weight: 400;
+      font-size: 18px;
+      line-height: normal;
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function(e){
+      $(".alert").fadeOut(10000);
+    }
+    $(".cross-btn").click(function(){
+      $(".alert").hide();
+    });
+  </script>
+</body>
+</html>

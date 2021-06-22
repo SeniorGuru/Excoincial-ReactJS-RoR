@@ -1,0 +1,13 @@
+<%= yield %>
+--
+
+Thank you!
+EXCOINCIAL Team
+Automated message, please do not reply.
+
+If this activity is not your own operation, or looks suspicious, please
+disable your account here:
+<%= welcome_disable_account_url(@member.sn) %>
+and contact us immediately on <%= ENV.fetch('ADMIN_EMAIL') %><br />
+If your account is disabled in this way, it will remain disabled for
+<%= @lock_period %> at least after you contact support.

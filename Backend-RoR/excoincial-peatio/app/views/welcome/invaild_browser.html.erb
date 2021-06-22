@@ -1,0 +1,17 @@
+<div class="login_alert-page">
+	<div class="container">
+		<div class="content-wrapper">
+			<h1>LOGIN GUARD VERIFICATION REQUIRED</h1>
+			<p>A login attempt has been made to your Excoincial user account.</p>
+			<p>Login attempt details:</p>
+			<p>IP address: <%= @user_history[:ip] %></p>
+			<p>City: <%= @user_history[:city] %></p>
+			<p>Web browser: <%= @user_history[:browser] %></p>
+			<p>If you DID this yourself</p>
+			<p>Click the following link to verify the new browser: <%= link_to "Verify browser",root_url+"member/"+current_user.sn+"/approve_login?sid="+session.id%></p>
+			<p>If you DID NOT do this yourself</p>
+			<p>Go to Excoincial and change your password, as somebody has tried to log in with your password.</p>
+			<a href="/logout" class="btn btn-link">Logout</a>
+		</div>
+	</div>
+</div>

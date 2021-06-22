@@ -1,0 +1,17 @@
+Dear User,
+
+Your account is deactivated either on your request or due to an excessive
+number of unsuccessful sign in attempts.
+
+<% if @unlock_from_now.present? %>
+Unlock will be available at <%= @unlock_at %> which is in <%= @unlock_from_now
+%> from now.
+
+After lock period click the link below to unlock your account:
+<% else %>
+Unlock is already available. Please click the link below to unlock your
+account:
+<% end %>
+
+<%= link_to 'Unlock my account', account_unlock_url(
+ViewHelper.with_frontend_domain(unlock_token: @token)) %>

@@ -1,0 +1,17 @@
+Dear <%= @withdraw.member.email %>,
+
+your <%= ENV.fetch('SENDER_NAME').upcase %> wallet account applied for withdrawing
+<%= @withdraw.amount.to_f.round(3) %>
+<%= @withdraw.currency_id.upcase %>
+to address: <%= @withdraw.rid %>.
+
+Please carefully check your wallet address letter by letter since any withdrawn currency once finalized is irreversible.
+In order to confirm your withdrawal request please click on the following button underneath:
+
+<center><p><%= link_to "Confirm Withdrawal",welcome_confirm_withdrawal_url(@withdraw.tid) %></p></center>
+
+If you can't confirm by clicking the button above,
+please copy the address below to the browser address bar to confirm.
+<%= welcome_confirm_withdrawal_url(@withdraw.tid) %>
+
+For security reasons, this link will expire in 30 minutes.

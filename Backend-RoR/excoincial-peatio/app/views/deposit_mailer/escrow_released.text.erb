@@ -1,0 +1,10 @@
+Dear <%= @deposit.member.email %>,
+
+Escrow was released to your <%= ENV.fetch('SENDER_NAME').upcase %> account
+<%= @deposit.amount.to_f.round(3)%> <%= @deposit.currency_id.upcase %>
+
+Escrow origin: <%= @sender.email.split("@")[0].first %>*****<%=
+@sender.email.split("@")[0].last %>@<%=
+@sender.email.split("@")[1] %>
+<%= @deposit.escrow_release_reason %>
+<%= @deposit.escrow_agreement %>
